@@ -1,5 +1,8 @@
 package enumerated;
 
 public enum Naipe {
-	PICAFUMO, ESPADILHA, COPAS, ZAP;
+	PICAFUMO,
+	ESPADILHA,
+	COPAS,
+	ZAP;
 }
