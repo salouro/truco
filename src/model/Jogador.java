@@ -3,9 +3,9 @@ package model;
 import java.util.List;
 
 public abstract class Jogador {
-	protected List<Carta> mao;
-	protected String nome;
-	protected int pontuacao;
+	private List<Carta> mao;
+	private String nome;
+	private int pontuacao;
 	
 	
 	public Jogador(String nome){
