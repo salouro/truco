@@ -1,16 +1,16 @@
 package enumerated;
 
 public enum Valor {
-	QUATRO(4), 
-	CINCO(5),
-	SEIS(6), 
-	SETE(7),
-	Q(8),
-	J(9),
-	K(10),
-	A(11),
-	DOIS(12),
-	TRES(13);
+	QUATRO(1), 
+	CINCO(2),
+	SEIS(3), 
+	SETE(4),
+	Q(5),
+	J(6),
+	K(7),
+	A(8),
+	DOIS(9),
+	TRES(10);
 
 	private int valor;
 

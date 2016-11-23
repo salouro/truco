@@ -18,17 +18,7 @@ public class Turno {
 		this.cartasJogadas.add(c);
 	}
 
-	public Carta removeCarta(Naipe n, Valor v){
-		
-		for (Carta card : cartasJogadas){
-			if (card.getNaipe().equals(n) && card.getValor().equals(v)){
-				cartasJogadas.remove(card);
-				return card;
-			}
-		}
-		
-		return null;
-	}
+	
 	
 	public int getNumero() {
 		return numero;
