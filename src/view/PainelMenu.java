@@ -63,7 +63,7 @@ public class PainelMenu extends JPanel implements MouseListener {
 
 		if ((int) p.x >= 132 && (int) p.x <= 202 && (int) p.y >= 113 && (int) p.y <= 180) {
 			try {
-				flag=20;
+				flag=-20;
 				novo = ImageIO.read(new File("C:\\Users\\Celia\\Downloads\\novo.jpg"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
