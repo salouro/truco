@@ -1,7 +1,9 @@
 package model;
 
 public class PC extends Jogador{
-
+	
+	private static int id;
+	
 	public PC(String nome) {
 		super(nome);
 	}
@@ -13,5 +15,13 @@ public class PC extends Jogador{
 	
 	public void decidirAcao(){
 		
+	}
+
+	public static int getId() {
+		return id;
+	}
+
+	public static void setId(int id) {
+		PC.id = id;
 	}
 }
