@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.net.URL;
 
 import javax.swing.JFrame;
 
@@ -15,16 +17,11 @@ import java.awt.GridLayout;
 public class Menu extends JFrame {
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+      
+		//System.out.println(ClassLoader.class.getResource("mesa 3.2.png").toString());
+		//File file = new File("img.Cenário//mesa 3.2.png");
+		
+		Menu m = new Menu();
 	}
 
 	public Menu() {
@@ -34,6 +31,6 @@ public class Menu extends JFrame {
 		setResizable(false);
 		setContentPane(p);
 		addMouseListener(p);
+		setVisible(true);
 	}
-
 }
