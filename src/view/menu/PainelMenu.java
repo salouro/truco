@@ -1,5 +1,7 @@
 package view.menu;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseListener;
@@ -12,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 public class PainelMenu extends JPanel {
 	private JLabel novo;
 	private JLabel placar;
+	AudioClip clip;
 
 	public PainelMenu() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -28,6 +31,10 @@ public class PainelMenu extends JPanel {
 	}
 
 	public void criarMenu() {
+		clip = Applet.newAudioClip(getClass().getResource("musica-fundo-menu.wav"));
+		clip.loop();
+		
+		
 		ImageIcon novoIcon = new ImageIcon(this.getClass().getResource("/img/cenario/novo1.jpg"));
 		ImageIcon novoHoverIcon = new ImageIcon(this.getClass().getResource("/img/cenario/novo.jpg"));
 		ImageIcon placarIcon = new ImageIcon(this.getClass().getResource("/img/cenario/placar1.jpg"));
@@ -66,6 +73,7 @@ public class PainelMenu extends JPanel {
 			public void mouseClicked(java.awt.event.MouseEvent arg0) {
 				MenuNovo novoJogo = new MenuNovo();
 				novoJogo.setVisible(true);
+				clip.stop();
 			}
 		});
 
