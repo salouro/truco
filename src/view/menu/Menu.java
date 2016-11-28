@@ -30,83 +30,10 @@ import java.awt.Shape;
 public class Menu extends JFrame {
 
 	private PainelMenu painel;
-	private JLabel novo;
-	private JLabel placar;
-	private ImageIcon fundo = new ImageIcon(getClass().getResource("mesa 3.2.png"));
 
-	
 	public Menu() {
 		painel = new PainelMenu();
 		setContentPane(painel);
-	}
-	
-	
-	public class PainelMenu extends JPanel {
-		
-		private static final long serialVersionUID = 1L;
-
-		public PainelMenu() {
-			setBorder(new EmptyBorder(5, 5, 5, 5));
-			setLayout(null);
-			criarMenu();
-		}
-		
-		public void paintComponent(Graphics g){
-			super.paintComponent(g);
-			
-			Image backgound = fundo.getImage();
-			g.drawImage(backgound,0,0,this);
-			
-		}
-		
-		public void criarMenu() {
-			ImageIcon novoIcon = new ImageIcon(getClass().getResource("novo1.jpg"));
-			ImageIcon novoHoverIcon = new ImageIcon(getClass().getResource("novo.jpg"));
-			ImageIcon placarIcon = new ImageIcon(getClass().getResource("Placar1.jpg"));
-			ImageIcon placarHoverIcon = new ImageIcon(getClass().getResource("Placar.jpg"));
-			
-			novo = new JLabel();
-			novo.setIcon(novoIcon);
-			novo.setBounds(177, 116, 131, 46);
-			add(novo);
-			
-			placar = new JLabel();
-			placar.setIcon(placarIcon);
-			placar.setBounds(177, 186, 139, 52);
-			add(placar);
-			
-			
-			novo.addMouseListener(new MouseListener() {
-				@Override
-				public void mouseReleased(java.awt.event.MouseEvent arg0) {}
-				@Override
-				public void mousePressed(java.awt.event.MouseEvent arg0) {}
-				@Override
-				public void mouseExited(java.awt.event.MouseEvent arg0) {novo.setIcon(novoIcon);}
-				@Override
-				public void mouseEntered(java.awt.event.MouseEvent arg0) {novo.setIcon(novoHoverIcon);}
-				@Override
-				public void mouseClicked(java.awt.event.MouseEvent arg0) {
-					MenuNovo novoJogo = new MenuNovo();
-					novoJogo.setVisible(true);
-				}
-			});
-			
-			placar.addMouseListener(new MouseListener() {
-				@Override
-				public void mouseReleased(java.awt.event.MouseEvent arg0) {}
-				@Override
-				public void mousePressed(java.awt.event.MouseEvent arg0) {}
-				@Override
-				public void mouseExited(java.awt.event.MouseEvent arg0) {placar.setIcon(placarIcon);}
-				@Override
-				public void mouseEntered(java.awt.event.MouseEvent arg0) {placar.setIcon(placarHoverIcon);}
-				@Override
-				public void mouseClicked(java.awt.event.MouseEvent arg0) {}
-			});
-
-
-		}
 	}
 
 }
