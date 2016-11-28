@@ -1,7 +1,5 @@
 package view.menu;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,7 +7,6 @@ import javax.swing.border.EmptyBorder;
 
 import view.jogo.JogoPrincipal;
 
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
