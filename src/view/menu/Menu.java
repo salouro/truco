@@ -8,7 +8,7 @@ public class Menu extends JFrame {
 
 	public Menu() {
 		painel = new PainelMenu();
-		setContentPane(painel);
+		this.setContentPane(painel);
 	}
 
 }

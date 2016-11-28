@@ -10,40 +10,38 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class PainelMenu extends JPanel {
-	private ImageIcon fundo;
 	private JLabel novo;
 	private JLabel placar;
 
 	public PainelMenu() {
-		setBorder(new EmptyBorder(5, 5, 5, 5));
-		setLayout(null);
-		criarMenu();
-		this.fundo = new ImageIcon(this.getClass().getResource("/img/cenario/mesa-3.2.png"));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(null);
+		this.criarMenu();
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		Image backgound = fundo.getImage();
-		g.drawImage(backgound, 0, 0, this);
+		Image background = new ImageIcon(this.getClass().getResource("/img/cenario/mesa-3.2.png")).getImage();
+		g.drawImage(background, 0, 0, this);
 
 	}
 
 	public void criarMenu() {
-		ImageIcon novoIcon = new ImageIcon(this.getClass().getResource("/img/cenario/novo1.jpg").getPath());
-		ImageIcon novoHoverIcon = new ImageIcon(this.getClass().getResource("/img/cenario/novo.jpg").getPath());
-		ImageIcon placarIcon = new ImageIcon(this.getClass().getResource("/img/cenario/placar1.jpg").getPath());
-		ImageIcon placarHoverIcon = new ImageIcon(this.getClass().getResource("/img/cenario/placar.jpg").getPath());
+		ImageIcon novoIcon = new ImageIcon(this.getClass().getResource("/img/cenario/novo1.jpg"));
+		ImageIcon novoHoverIcon = new ImageIcon(this.getClass().getResource("/img/cenario/novo.jpg"));
+		ImageIcon placarIcon = new ImageIcon(this.getClass().getResource("/img/cenario/placar1.jpg"));
+		ImageIcon placarHoverIcon = new ImageIcon(this.getClass().getResource("/img/cenario/placar.jpg"));
 
 		novo = new JLabel();
 		novo.setIcon(novoIcon);
+		this.add(novo);
 		novo.setBounds(177, 116, 131, 46);
-		add(novo);
 
 		placar = new JLabel();
 		placar.setIcon(placarIcon);
+		this.add(placar);
 		placar.setBounds(177, 186, 139, 52);
-		add(placar);
 
 		novo.addMouseListener(new MouseListener() {
 			@Override
