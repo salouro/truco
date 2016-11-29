@@ -18,7 +18,7 @@ class PainelJogo extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		Image background = new ImageIcon(getClass().getResource("/img/cenario/fundo-mesa.png")).getImage();
+		Image background = new ImageIcon(getClass().getResource("/resource/img/cenario/fundo-mesa.png")).getImage();
 		g.drawImage(background,0,0,this);
 		
 	}
