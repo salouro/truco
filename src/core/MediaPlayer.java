@@ -28,10 +28,11 @@ public class MediaPlayer {
 	public void tocaMusica() throws BasicPlayerException {
 		pl.open(this.getClass().getResource(path + "/" + caminhos[atual]));
 		pl.play();
-
+		//gambiarra pra deixar o metodo rodando pra sempre enquanto a musica toca
 		while (pl.getStatus() == 0) {
 		}
 
+		//recursividade top
 		if (atual >= caminhos.length - 1) {
 			atual = 0;
 			tocaMusica();
