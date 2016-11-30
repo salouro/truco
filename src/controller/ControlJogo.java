@@ -12,12 +12,14 @@ import model.CriadorPC;
 import model.CriadorPessoa;
 import model.FactoryJogador;
 import model.Jogador;
+import java.util.concurrent.Semaphore;
 
 public class ControlJogo {
 	private CriadorCarta fabricaCarta;
 	private FactoryJogador fabricaJogador;
 	private Valor[] valores;
 	private Naipe[] naipes;
+	static Semaphore semaforo = new Semaphore(1);
 
 	public ControlJogo() {
 		this.fabricaCarta = new CriadorCarta();
@@ -30,7 +32,7 @@ public class ControlJogo {
 		Random gerador = new Random();
 		Carta aux;
 		int indice;
-		
+
 		for (int j = 0; j < 10; j++) {
 			for (int i = 0; i < cartas.size(); i++) {
 				indice = gerador.nextInt(cartas.size());
@@ -65,14 +67,15 @@ public class ControlJogo {
 		c.setNaipe(n);
 		b.addCarta(c);
 	}
-	
-	public Jogador setarJogador(boolean cond){
-		if (cond){
+
+	public Jogador setarJogador(boolean cond) {
+		if (cond) {
 			fabricaJogador = new CriadorPessoa();
 		} else {
 			fabricaJogador = new CriadorPC();
 		}
-		
+
 		return fabricaJogador.novo();
 	}
+
 }
