@@ -3,8 +3,9 @@ package view.menu;
 import java.awt.Dialog;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JFrame;
+import core.MediaPlayer;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 public class Menu extends JFrame implements MouseListener {
 
@@ -16,6 +17,12 @@ public class Menu extends JFrame implements MouseListener {
 		this.setContentPane(painel);
 		this.painel.getNovo().addMouseListener(this);
 		this.painel.getPlacar().addMouseListener(this);
+		MediaPlayer mp = new MediaPlayer("/resource/music");
+		try {
+			mp.tocaMusica();
+		} catch (BasicPlayerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

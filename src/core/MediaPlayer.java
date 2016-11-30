@@ -1,21 +1,18 @@
 package core;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
-
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
-public class MediaPlayer{
+public class MediaPlayer {
 	private String[] caminhos;
 	private int atual;
 	private BasicPlayer pl;
 	private String path;
 
-	public MediaPlayer(String c) {
-		this.path = c;
+	public MediaPlayer(String path) {
+		this.path = path;
 		this.pl = new BasicPlayer();
 		this.atual = 0;
 
@@ -27,41 +24,21 @@ public class MediaPlayer{
 
 	}
 
-	public void continuaMusica() {
-		while (pl.getStatus() == pl.PLAYING) {
-
-		}
-	}
 
 	public void tocaMusica() throws BasicPlayerException {
 		pl.open(this.getClass().getResource(path + "/" + caminhos[atual]));
 		pl.play();
-	}
 
-	public void paraMusica() throws BasicPlayerException {
-		pl.pause();
-	}
-
-	public void passaMusica() throws BasicPlayerException {
+		while (pl.getStatus() == 0) {
+		}
 
 		if (atual >= caminhos.length - 1) {
 			atual = 0;
+			tocaMusica();
 		} else {
 			atual++;
+			tocaMusica();
 		}
-
-		this.tocaMusica();
-	}
-
-	public void voltaMusica() throws BasicPlayerException {
-
-		if (atual <= 0) {
-			atual = caminhos.length - 1;
-		} else {
-			atual--;
-		}
-
-		this.tocaMusica();
 	}
 
 	public void geraPlaylist() {
