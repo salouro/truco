@@ -5,7 +5,7 @@ import java.util.Random;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
-public class MediaPlayer {
+public class MediaPlayer extends Thread{
 	private String[] caminhos;
 	private int atual;
 	private BasicPlayer pl;
@@ -85,6 +85,16 @@ public class MediaPlayer {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+	
+	
+	@Override
+	public void run(){
+		try {
+			tocaMusica();
+		} catch (BasicPlayerException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

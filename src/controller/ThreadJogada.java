@@ -26,4 +26,5 @@ public class ThreadJogada extends Thread{
 	private void jogada() {
 		
 	}
+	
 }

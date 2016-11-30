@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import core.MediaPlayer;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
+
 public class PainelMenu extends JPanel{
 
 	private JLabel novo;
