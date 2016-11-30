@@ -4,7 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.Random;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -13,21 +20,30 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class MediaPlayer extends Thread {
-	private String[] caminhos;
+	private List<String> caminhos = new ArrayList<String>();
 	private int atual;
 	private Clip pl;
 	private String path;
 	private AudioInputStream ad;
 
-	public MediaPlayer(String path) throws LineUnavailableException {
+	public MediaPlayer(String path) throws LineUnavailableException, ZipException, IOException {
 		this.path = path;
 		this.pl = AudioSystem.getClip();
 		this.atual = 0;
 
 		File f = new File(this.getClass().getResource(path).getPath());
 
-		this.caminhos = f.list();
+		if (f.getPath().contains(".jar")) {
+			caminhos = carregaMusicaJar(path);
+		} else {
+			this.caminhos = Arrays.asList(f.list());
+			
+			for (int i = 0; i < caminhos.size(); i++){
+				caminhos.set(i, path + "/" + caminhos.get(i));
+			}
+		}
 
+		
 		this.geraPlaylist();
 
 	}
@@ -43,32 +59,32 @@ public class MediaPlayer extends Thread {
 	}
 
 	public void tocaMusica() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		ad = AudioSystem.getAudioInputStream(this.getClass().getResource(path + "/" + caminhos[atual]));
+		ad = AudioSystem.getAudioInputStream(this.getClass().getResource(caminhos.get(atual)));
 		pl.open(ad);
 		pl.start();
 	}
 
 	public void passaMusica() {
-		if (atual >= caminhos.length - 1) {
+		if (atual >= caminhos.size() - 1) {
 			atual = 0;
 		} else {
 			atual++;
 		}
-		
+
 		flushFecha();
 	}
 
 	public void voltaMusica() {
 		if (atual <= 0) {
-			atual = caminhos.length - 1;
+			atual = caminhos.size() - 1;
 		} else {
 			atual--;
 		}
-		
+
 		flushFecha();
 	}
-	
-	public void flushFecha(){
+
+	public void flushFecha() {
 		pl.flush();
 		pl.close();
 	}
@@ -78,20 +94,32 @@ public class MediaPlayer extends Thread {
 		String aux;
 		int novoind;
 
-		for (int i = 0; i < caminhos.length; i++) {
-			novoind = gerador.nextInt(caminhos.length - 1);
-			aux = caminhos[novoind];
-			caminhos[novoind] = caminhos[i];
-			caminhos[i] = aux;
+		for (int i = 0; i < caminhos.size(); i++) {
+			novoind = gerador.nextInt(caminhos.size() - 1);
+			aux = caminhos.get(novoind);
+			caminhos.set(novoind, caminhos.get(i));
+			caminhos.set(i, aux);
 		}
 	}
 
-	public String[] getCaminhos() {
-		return caminhos;
-	}
+	public List<String> carregaMusicaJar(String path) throws ZipException, IOException {
+		ZipFile zf = new ZipFile(
+				new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath()));
 
-	public void setCaminhos(String[] caminhos) {
-		this.caminhos = caminhos;
+		Enumeration<? extends ZipEntry> entries = zf.entries();
+
+		ZipEntry ze = null;
+
+		while (entries.hasMoreElements()) {
+			ze = entries.nextElement();
+
+			if (ze.getName().endsWith(".wav")) {
+				caminhos.add("/" + ze.getName());
+			}
+		}
+
+		return caminhos;
+
 	}
 
 	public int getAtual() {

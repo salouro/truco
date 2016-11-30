@@ -1,5 +1,7 @@
 package test;
 
+import java.io.IOException;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JFrame;
 
@@ -23,7 +25,7 @@ public class TesteMenu {
 			teste.setSujeito(mp);
 			mp.setListener(teste);
 			mp.run();
-		} catch (LineUnavailableException e) {
+		} catch (LineUnavailableException | IOException e) {
 		
 			e.printStackTrace();
 		}
