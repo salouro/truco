@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import core.MediaPlayer;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 public class Menu extends JFrame implements MouseListener {
 

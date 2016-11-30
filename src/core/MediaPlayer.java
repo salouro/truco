@@ -1,19 +1,27 @@
 package core;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Random;
-import javazoom.jlgui.basicplayer.BasicPlayer;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
 
-public class MediaPlayer extends Thread{
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+public class MediaPlayer extends Thread {
 	private String[] caminhos;
 	private int atual;
-	private BasicPlayer pl;
+	private Clip pl;
 	private String path;
+	private AudioInputStream ad;
 
-	public MediaPlayer(String path) {
+	public MediaPlayer(String path) throws LineUnavailableException {
 		this.path = path;
-		this.pl = new BasicPlayer();
+		this.pl = AudioSystem.getClip();
 		this.atual = 0;
 
 		File f = new File(this.getClass().getResource(path).getPath());
@@ -24,22 +32,45 @@ public class MediaPlayer extends Thread{
 
 	}
 
-
-	public void tocaMusica() throws BasicPlayerException {
-		pl.open(this.getClass().getResource(path + "/" + caminhos[atual]));
-		pl.play();
-		//gambiarra pra deixar o metodo rodando pra sempre enquanto a musica toca
-		while (pl.getStatus() == 0) {
+	@Override
+	public void run() {
+		try {
+			tocaMusica();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		//recursividade top
+	}
+
+	public void tocaMusica() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		ad = AudioSystem.getAudioInputStream(this.getClass().getResource(path + "/" + caminhos[atual]));
+		pl.open(ad);
+		pl.start();
+	}
+
+	public void passaMusica() {
 		if (atual >= caminhos.length - 1) {
 			atual = 0;
-			tocaMusica();
 		} else {
 			atual++;
-			tocaMusica();
 		}
+		
+		flushFecha();
+	}
+
+	public void voltaMusica() {
+		if (atual <= 0) {
+			atual = caminhos.length - 1;
+		} else {
+			atual--;
+		}
+		
+		flushFecha();
+	}
+	
+	public void flushFecha(){
+		pl.flush();
+		pl.close();
 	}
 
 	public void geraPlaylist() {
@@ -71,14 +102,6 @@ public class MediaPlayer extends Thread{
 		this.atual = atual;
 	}
 
-	public BasicPlayer getPl() {
-		return pl;
-	}
-
-	public void setPl(BasicPlayer pl) {
-		this.pl = pl;
-	}
-
 	public String getPath() {
 		return path;
 	}
@@ -86,15 +109,25 @@ public class MediaPlayer extends Thread{
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
-	
-	@Override
-	public void run(){
-		try {
-			tocaMusica();
-		} catch (BasicPlayerException e) {
-			e.printStackTrace();
-		}
+
+	public Clip getPl() {
+		return pl;
+	}
+
+	public void setPl(Clip pl) {
+		this.pl = pl;
+	}
+
+	public AudioInputStream getAd() {
+		return ad;
+	}
+
+	public void setAd(AudioInputStream ad) {
+		this.ad = ad;
+	}
+
+	public void setListener(PlayerListener teste) {
+		pl.addLineListener(teste);
 	}
 
 }
