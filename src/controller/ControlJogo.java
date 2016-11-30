@@ -74,7 +74,7 @@ public class ControlJogo {
 		} else {
 			fabricaJogador = new CriadorPC();
 		}
-
+ 
 		return fabricaJogador.novo();
 	}
 
