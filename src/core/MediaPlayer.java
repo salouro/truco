@@ -1,9 +1,8 @@
 package core;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -26,7 +25,8 @@ public class MediaPlayer extends Thread {
 	private String path;
 	private AudioInputStream ad;
 
-	public MediaPlayer(String path) throws LineUnavailableException, ZipException, IOException {
+	public MediaPlayer(String path) throws LineUnavailableException,
+			ZipException, IOException {
 		this.path = path;
 		this.pl = AudioSystem.getClip();
 		this.atual = 0;
@@ -37,13 +37,12 @@ public class MediaPlayer extends Thread {
 			caminhos = carregaMusicaJar(path);
 		} else {
 			this.caminhos = Arrays.asList(f.list());
-			
-			for (int i = 0; i < caminhos.size(); i++){
+
+			for (int i = 0; i < caminhos.size(); i++) {
 				caminhos.set(i, path + "/" + caminhos.get(i));
 			}
 		}
 
-		
 		this.geraPlaylist();
 
 	}
@@ -58,8 +57,10 @@ public class MediaPlayer extends Thread {
 
 	}
 
-	public void tocaMusica() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		ad = AudioSystem.getAudioInputStream(this.getClass().getResource(caminhos.get(atual)));
+	public void tocaMusica() throws UnsupportedAudioFileException, IOException,
+			LineUnavailableException {
+		ad = AudioSystem.getAudioInputStream(this.getClass().getResource(
+				caminhos.get(atual)));
 		pl.open(ad);
 		pl.start();
 	}
@@ -102,9 +103,10 @@ public class MediaPlayer extends Thread {
 		}
 	}
 
-	public List<String> carregaMusicaJar(String path) throws ZipException, IOException {
-		ZipFile zf = new ZipFile(
-				new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath()));
+	public List<String> carregaMusicaJar(String path) throws ZipException,
+			IOException {
+		ZipFile zf = new ZipFile(new File(this.getClass().getProtectionDomain()
+				.getCodeSource().getLocation().getPath()));
 
 		Enumeration<? extends ZipEntry> entries = zf.entries();
 

@@ -1,22 +1,41 @@
 package view.menu;
 
 import java.awt.Dialog;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JFrame;
-import core.MediaPlayer;
+import java.io.IOException;
 
-public class Menu extends JFrame implements MouseListener {
+import javax.sound.sampled.LineUnavailableException;
+import javax.swing.JFrame;
+
+import core.MediaPlayer;
+import core.PlayerListener;
+
+public class Menu extends JFrame implements MouseListener, KeyListener {
 
 	private PainelMenu painel;
 	private MenuNovo novoJogo;
+	private MediaPlayer mp;
 
 	public Menu() {
 		painel = new PainelMenu();
 		this.setContentPane(painel);
 		this.painel.getNovo().addMouseListener(this);
 		this.painel.getPlacar().addMouseListener(this);
-	
+		this.addKeyListener(this);
+		
+		try {
+			mp = new MediaPlayer("/resource/music");
+			PlayerListener teste = new PlayerListener();
+			teste.setSujeito(mp);
+			mp.setListener(teste);
+			mp.run();
+		} catch (LineUnavailableException | IOException e) {
+		
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -60,6 +79,34 @@ public class Menu extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		try {
+
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				mp.voltaMusica();
+				mp.tocaMusica();
+				System.out.println("cu");
+
+			} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				mp.passaMusica();
+				mp.tocaMusica();
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
 	}
 
 }
