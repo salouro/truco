@@ -17,8 +17,6 @@ public class Turno {
 	public void addCarta(Carta c){
 		this.cartasJogadas.add(c);
 	}
-
-	
 	
 	public int getNumero() {
 		return numero;

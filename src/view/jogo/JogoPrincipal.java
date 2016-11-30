@@ -5,13 +5,16 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import controller.ControlPartida;
+
+
 public class JogoPrincipal extends JFrame implements MouseListener {
 
 	private PainelJogo painel;
-
-	
+	private ControlPartida cp;
 	
 	public JogoPrincipal() {
+		cp = new ControlPartida();
 		this.setSize(900, 600);
 		this.setResizable(false);
 		painel = new PainelJogo();
@@ -22,23 +25,22 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		
 	}
 
-
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String name = e.getComponent().getName();
 		
 		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) { 		//caso seja clicado na carta1
 			this.painel.moverCardParaMesa(this.painel.getCard1());
+			cp.jogadaJogador();
 		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) { //clicado carta 2
 			this.painel.moverCardParaMesa(this.painel.getCard2());
+			cp.jogadaJogador();
 		} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) { 		//caso seja clicado na carta3
 			this.painel.moverCardParaMesa(this.painel.getCard3());
+			cp.jogadaJogador();
 		}
 		
 	}
-
-
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
@@ -52,8 +54,6 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 			this.painel.setIconeGrande(this.painel.getCard3());
 		}
 	}
-
-
 
 	@Override
 	public void mouseExited(MouseEvent e) {
@@ -69,21 +69,12 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		
 	}
 
-
-
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
-
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 	
-
 }

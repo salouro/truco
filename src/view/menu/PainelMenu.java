@@ -26,7 +26,7 @@ public class PainelMenu extends JPanel{
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
 		this.criarMenu();
-		this.setName("cu");
+		this.setName("Trucuzinho");
 	}
 
 	public void paintComponent(Graphics g) {

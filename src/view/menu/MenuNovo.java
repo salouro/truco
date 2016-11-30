@@ -3,6 +3,8 @@ package view.menu;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.ControlJogo;
+import controller.ControlPartida;
 import view.jogo.JogoPrincipal;
 
 import javax.swing.JLabel;
@@ -22,6 +24,8 @@ public class MenuNovo extends JDialog {
 	private JCheckBox chckbxBaralhoLimpo;
 	private String nomeDoJogador;
 	private boolean tipoBaralho;
+	private ControlPartida cp;
+	private ControlJogo cj;
 	
 	public MenuNovo(Frame owner) {
 		super(owner);
@@ -34,7 +38,9 @@ public class MenuNovo extends JDialog {
 		JLabel lblNomeJogador = new JLabel("Nome Jogador:");
 		lblNomeJogador.setBounds(12, 13, 118, 16);
 		contentPane.add(lblNomeJogador);
-
+		
+		cp= new ControlPartida();
+		cj= new ControlJogo();
 		nomeJogador = new JTextField();
 		nomeJogador.setBounds(107, 10, 228, 22);
 		contentPane.add(nomeJogador);
@@ -51,18 +57,19 @@ public class MenuNovo extends JDialog {
 				jogo.setVisible(true);
 				setTipoBaralho(chckbxBaralhoLimpo);
 				setNomeDoJogador(nomeJogador);
-				if (isTipoBaralho())
-					System.out.println("Sujo");
-				else
-					System.out.println("Limpo");
+				if (isTipoBaralho()) {
+					cj.setarBaralho(true);
+				} else {
+					cj.setarBaralho(false);
+				}
 				System.out.println("Nome jogador: " + getNomeDoJogador());
+				cp.iniciarTurno();
 			}
 		});
 		btnJogar.setBounds(238, 54, 97, 25);
 		contentPane.add(btnJogar);
 
 	}
-
 
 	public String getNomeDoJogador() {
 		return nomeDoJogador;
@@ -76,13 +83,9 @@ public class MenuNovo extends JDialog {
 		return tipoBaralho;
 	}
 
-	//se true é sujo, se false é limpo
+	// se true é sujo, se false é limpo
 	public void setTipoBaralho(JCheckBox chckbx) {
 		this.tipoBaralho = !chckbx.isSelected();
 	}
-	
-	
-	
-	
-	
+
 }

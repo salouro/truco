@@ -43,7 +43,10 @@ public class ControlJogo {
 		}
 	}
 
-	public void setarBaralho(Baralho b) {
+	public void setarBaralho(boolean bool) {
+
+		Baralho b = new Baralho();
+		b.setTipo(bool);
 		if (b.isTipo()) {
 			geraBaralho(b, 0);
 		} else {
