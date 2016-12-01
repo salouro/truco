@@ -1,7 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Jogo {
@@ -10,9 +12,25 @@ public class Jogo {
 	private Date data;
 	private int pontosA;
 	private int pontosB;
-	
-	public Jogo(){
+	private Jogador vencedor;
+	private List<Partida> partidas;
+	private Baralho baralho;
+
+	public Jogo() {
 		this.jogadores = new HashSet<Jogador>();
+		this.partidas = new ArrayList<Partida>();
+	}
+
+	public void addJogador(Jogador j) {
+		jogadores.add(j);
+	}
+
+	public Baralho getBaralho() {
+		return baralho;
+	}
+
+	public void setBaralho(Baralho baralho) {
+		this.baralho = baralho;
 	}
 
 	public Set<Jogador> getJogadores() {
@@ -54,7 +72,27 @@ public class Jogo {
 	public void setPontosB(int pontosB) {
 		this.pontosB = pontosB;
 	}
+<<<<<<< HEAD
+
+	public Jogador getVencedor() {
+		return vencedor;
+	}
+
+	public void setVencedor(Jogador vencedor) {
+		this.vencedor = vencedor;
+	}
+
+	public List<Partida> getPartidas() {
+		return partidas;
+	}
+
+	public void setPartidas(List<Partida> partidas) {
+		this.partidas = partidas;
+	}
+
+=======
 	
 	
 	
+>>>>>>> refs/remotes/origin/master
 }

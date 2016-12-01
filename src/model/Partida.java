@@ -1,10 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Partida {
 	private Jogador vencedor;
 	private int pontosDisputados;
-	
-	public Partida(){
+	private List<Turno> turnos;
+	private Carta vira;
+
+	public Partida() {
+		this.turnos = new ArrayList<Turno>();
 	}
 
 	public Jogador getVencedor() {
@@ -22,4 +28,22 @@ public class Partida {
 	public void setPontosDisputados(int pontosDisputados) {
 		this.pontosDisputados = pontosDisputados;
 	}
+
+	public List<Turno> getTurnos() {
+		return turnos;
+	}
+
+	public void setTurnos(List<Turno> turnos) {
+		this.turnos = turnos;
+	}
+	
+
+	public Carta getVira() {
+		return vira;
+	}
+
+	public void setVira(Carta vira) {
+		this.vira = vira;
+	}
+
 }

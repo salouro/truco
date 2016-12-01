@@ -19,14 +19,13 @@ import java.util.Random;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 
-public class MenuNovo extends JDialog {
-	
+public class MenuNovo extends JDialog implements ActionListener {
+
 	private JPanel contentPane;
 	private JTextField nomeJogador;
 	private JCheckBox chckbxBaralhoLimpo;
 	private String nomeDoJogador;
 	private boolean tipoBaralho;
-	private ControlPartida cp;
 	private ControlJogo cj;
 
 	public MenuNovo(Frame owner) {
@@ -41,8 +40,6 @@ public class MenuNovo extends JDialog {
 		lblNomeJogador.setBounds(12, 13, 118, 16);
 		contentPane.add(lblNomeJogador);
 
-		cp = new ControlPartida();
-		cj = new ControlJogo();
 		nomeJogador = new JTextField();
 		nomeJogador.setBounds(107, 10, 228, 22);
 		contentPane.add(nomeJogador);
@@ -53,25 +50,11 @@ public class MenuNovo extends JDialog {
 		contentPane.add(chckbxBaralhoLimpo);
 
 		JButton btnJogar = new JButton("Jogar");
-		btnJogar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JogoPrincipal jogo = new JogoPrincipal();
-				jogo.setVisible(true);
-				setTipoBaralho(chckbxBaralhoLimpo);
-				setNomeDoJogador(nomeJogador);
-				Pessoa p = new Pessoa(nomeDoJogador);
-				if (isTipoBaralho()) {
-					cj.setarBaralho(true);
-				} else {
-					cj.setarBaralho(false);
-				}
-				int inicio = new Random().nextInt(4) + 1;
-				cp.iniciarTurno(inicio, p.getNome());
-			}
-		});
+		btnJogar.addActionListener(this);
 		btnJogar.setBounds(238, 54, 97, 25);
 		contentPane.add(btnJogar);
 
+		cj = new ControlJogo();
 	}
 
 	public String getNomeDoJogador() {
@@ -89,6 +72,20 @@ public class MenuNovo extends JDialog {
 	// se true é sujo, se false é limpo
 	public void setTipoBaralho(JCheckBox chckbx) {
 		this.tipoBaralho = !chckbx.isSelected();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		cj.iniciaJogo(nomeJogador.getText(), isTipoBaralho(), 2);
+		
+		JogoPrincipal jogo = new JogoPrincipal(cj);
+		jogo.setVisible(true);
+		setTipoBaralho(chckbxBaralhoLimpo);
+		setNomeDoJogador(nomeJogador);
+
+		
+		
 	}
 
 }

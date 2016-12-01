@@ -9,6 +9,15 @@ import enumerated.Valor;
 public class Turno {
 	private int numero;
 	private List<Carta> cartasJogadas;
+<<<<<<< HEAD
+	private Jogador vencedor;
+
+	public Turno() {
+		this.cartasJogadas = new ArrayList<Carta>();
+	}
+
+	public void addCarta(Carta c) {
+=======
 	private int pontuacaoJogador;
 	private int pontuacaoPc;
 	private Jogador vencedor;
@@ -95,9 +104,10 @@ public class Turno {
 
 
 	public void addCarta(Carta c){
+>>>>>>> refs/remotes/origin/master
 		this.cartasJogadas.add(c);
 	}
-	
+
 	public int getNumero() {
 		return numero;
 	}
@@ -113,4 +123,13 @@ public class Turno {
 	public void setCartasJogadas(List<Carta> cartasJogadas) {
 		this.cartasJogadas = cartasJogadas;
 	}
+
+	public Jogador getVencedor() {
+		return vencedor;
+	}
+
+	public void setVencedor(Jogador vencedor) {
+		this.vencedor = vencedor;
+	}
+
 }

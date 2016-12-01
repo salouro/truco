@@ -1,13 +1,28 @@
 package controller;
 
+import java.util.List;
 import java.util.Random;
+<<<<<<< HEAD
+import java.util.Set;
+=======
 import java.util.concurrent.Semaphore;
+>>>>>>> refs/remotes/origin/master
 
 import model.Baralho;
 import model.Carta;
 import model.Jogador;
 import model.PC;
 import model.Partida;
+<<<<<<< HEAD
+
+public class ControlPartida {
+	private Partida partida;
+	private ControlTurno ct;
+	
+	
+	public ControlPartida() {		
+		this.ct = new ControlTurno();
+=======
 import model.Turno;
 
 public class ControlPartida extends Thread {
@@ -33,6 +48,7 @@ public class ControlPartida extends Thread {
 		this.pc = pc;
 		this.semaforo = semaforo;
 		controleJogo = new ControlJogo();
+>>>>>>> refs/remotes/origin/master
 	}
 
 	@Override
@@ -124,6 +140,40 @@ public class ControlPartida extends Thread {
 			pc.setPontuacao(turno.getValorPontosTurno());
 		}
 
+	}
+	
+	public void distribuiCartas(Set<Jogador> j, Baralho b){
+		embaralhar(b);
+		
+		for (int i = 0; i < 3; i++){
+			for (Jogador jo : j){
+				jo.addCarta(b.getCartas().remove(0));
+			}
+		}
+		
+		for (Jogador jo : j){
+			System.out.println(jo.getNome());
+			
+			for (Carta c : jo.getMao()){
+				System.out.println(c.getValor() + " de " + c.getNaipe());
+			}
+		}
+	}
+	
+	public void embaralhar(Baralho b) {
+		List<Carta> cartas = b.getCartas();
+		Random gerador = new Random();
+		Carta aux;
+		int indice;
+
+		for (int j = 0; j < 50; j++) {
+			for (int i = 0; i < cartas.size(); i++) {
+				indice = gerador.nextInt(cartas.size());
+				aux = cartas.get(indice);
+				cartas.set(indice, cartas.get(i));
+				cartas.set(i, aux);
+			}
+		}
 	}
 
 	public Jogador verificarVencedorTurno() {

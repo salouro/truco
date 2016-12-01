@@ -6,6 +6,7 @@ import java.util.concurrent.Semaphore;
 
 import javax.swing.JFrame;
 
+import controller.ControlJogo;
 import controller.ControlPartida;
 import enumerated.Naipe;
 import enumerated.Valor;
@@ -22,13 +23,21 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 
 	private PainelJogo painel;
 	private ControlPartida cp;
+<<<<<<< HEAD
+	private ControlJogo cj;
+	
+	public JogoPrincipal(ControlJogo cj) {
+		this.cj = cj;
+		cp = new ControlPartida();
+=======
 	Jogador jogador;
 	
 	public JogoPrincipal(Jogador jogador) {
 		this.jogador = jogador;
+>>>>>>> refs/remotes/origin/master
 		this.setSize(900, 600);
 		this.setResizable(false);
-		painel = new PainelJogo();
+		painel = new PainelJogo(cj.getJogadorHumano());
 		this.setContentPane(painel);
 		this.painel.getCard1().addMouseListener(this);
 		this.painel.getCard2().addMouseListener(this);

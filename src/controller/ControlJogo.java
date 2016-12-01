@@ -12,9 +12,13 @@ import model.CriadorPC;
 import model.CriadorPessoa;
 import model.FactoryJogador;
 import model.Jogador;
+<<<<<<< HEAD
+import model.Jogo;
+=======
 import model.PC;
 import model.Partida;
 import model.Turno;
+>>>>>>> refs/remotes/origin/master
 
 import java.util.concurrent.Semaphore;
 
@@ -23,28 +27,14 @@ public class ControlJogo {
 	private FactoryJogador fabricaJogador;
 	private Valor[] valores;
 	private Naipe[] naipes;
-	static Semaphore semaforo = new Semaphore(1);
+	private Jogo jogo;
+	private ControlPartida cp;
 
 	public ControlJogo() {
 		this.fabricaCarta = new CriadorCarta();
 		this.valores = Valor.values();
 		this.naipes = Naipe.values();
-	}
-
-	public void embaralhar(Baralho b) {
-		List<Carta> cartas = b.getCartas();
-		Random gerador = new Random();
-		Carta aux;
-		int indice;
-
-		for (int j = 0; j < 10; j++) {
-			for (int i = 0; i < cartas.size(); i++) {
-				indice = gerador.nextInt(cartas.size());
-				aux = cartas.get(indice);
-				cartas.set(indice, cartas.get(i));
-				cartas.set(i, aux);
-			}
-		}
+		this.cp = new ControlPartida();
 	}
 
 	public void setarBaralho(boolean bool) {
@@ -56,7 +46,8 @@ public class ControlJogo {
 		} else {
 			geraBaralho(b, 4);
 		}
-
+		
+		this.jogo.setBaralho(b);
 	}
 
 	public void geraBaralho(Baralho b, int k) {
@@ -81,8 +72,51 @@ public class ControlJogo {
 		} else {
 			fabricaJogador = new CriadorPC();
 		}
- 
+
 		return fabricaJogador.novo();
+	}
+	
+	public void setarJogadoresJogo(String nome, int numerojogadores){
+		boolean tipo = true;
+		
+		for (int i = 0; i < numerojogadores; i++){
+			Jogador j = setarJogador(tipo);
+			
+			if (tipo){
+				j.setNome(nome);
+				tipo = !tipo;
+			}
+			
+			this.jogo.addJogador(j);
+		}
+	}
+
+	public void iniciaJogo(String nome, boolean tipo, int numerojogadores) {
+		this.jogo = new Jogo();
+		this.jogo.setNumeroJogadores(numerojogadores);
+		setarJogadoresJogo(nome, numerojogadores);
+		setarBaralho(tipo);
+		
+		for (Jogador j : jogo.getJogadores()){
+			System.out.println(j.getNome());
+		}
+		
+		for (Carta c : jogo.getBaralho().getCartas()){
+			System.out.println(c.getValor() + " de " + c.getNaipe());
+		}
+		
+		cp.distribuiCartas(jogo.getJogadores(), jogo.getBaralho());
+	}
+	
+	public Jogador getJogadorHumano(){
+		for (Jogador j : jogo.getJogadores()){
+			System.out.println(j.getNome());
+			if (!j.getNome().contains("Computador")){
+				return j;
+			}
+		}
+		
+		return null;
 	}
 
 	
