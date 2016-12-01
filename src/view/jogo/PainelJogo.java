@@ -65,6 +65,7 @@ class PainelJogo extends JPanel {
 
 		for (int i = 0; i < card.length; i++) {
 			card[i] = new JLabel();
+			card[i].setName("card"+i);
 			Carta carta = j.getMao().get(i);
 			setIconePequeno(card[i], carta.getNaipe().toString().toLowerCase(),
 					carta.getValor().toString().toLowerCase(), x);
