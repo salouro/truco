@@ -25,7 +25,7 @@ public class PainelMenu extends JPanel{
 	public PainelMenu() {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
-		this.criarMenu();
+		this.criarMenu(); 
 		this.setName("Trucuzinho");
 	}
 

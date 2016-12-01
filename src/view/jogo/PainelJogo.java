@@ -78,7 +78,7 @@ class PainelJogo extends JPanel {
 	public void setIconePequeno(JLabel card, String naipe, String valor, int x) {
 		System.out.println(naipe);
 		System.out.println(valor);
-		
+			
 		ImageIcon icone = new ImageIcon(this.getClass().getResource("/resource/img/baralho/" + naipe + "/"
 				+ valor + "-de-" + naipe + ".jpg"));
 		System.out.println(this.getClass().getResource("/resource/img/baralho/" + naipe + "/"
