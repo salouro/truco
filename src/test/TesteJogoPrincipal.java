@@ -17,7 +17,7 @@ import view.jogo.JogoPrincipal;
 public class TesteJogoPrincipal {
 
 	public static void main(String[] args) {
-		Jogador jogador = new Pessoa("teste");
+	/*	Jogador jogador = new Pessoa("teste");
 		Turno turno = new Turno();
 		Baralho baralho = new Baralho();
 		PC pc = new PC("pc");
@@ -29,7 +29,7 @@ public class TesteJogoPrincipal {
 		jogo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		cp.run();
-		jogador.setCartaJogada(new Carta());
+		jogador.setCartaJogada(new Carta());*/
 	}
 
 }
