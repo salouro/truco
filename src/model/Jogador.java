@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import enumerated.Naipe;
 import enumerated.Valor;
 

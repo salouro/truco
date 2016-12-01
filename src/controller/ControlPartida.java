@@ -2,13 +2,42 @@ package controller;
 
 import java.util.Random;
 
-public class ControlPartida {
+import model.PC;
 
+public class ControlPartida {
 	public ControlPartida() {
+		PC p1 = new PC("Zé");
+		PC p2 = new PC("Chitão");
+		PC p3 = new PC("Marrone");
+		
+		System.out.println(p1.getNome());
+		System.out.println(p2.getNome());
+		System.out.println(p3.getNome());
+		
 	}
 
-	public void iniciarTurno() {
-		System.out.println("jogador" + 1 + "vai iniciar");
+	public void iniciarTurno(int inicio, String nome) {
+		switch (inicio) {
+		case 1:
+			System.out.println("Zé começa o turno");
+			break;
+		case 2:
+			System.out.println("Chitão começa o turno");
+			break;
+		case 3:
+			System.out.println("Marrone começa o turno");
+			break;
+		case 4:
+			System.out.println(nome + " começa o turno");
+			break;
+		}
+		
+		if(inicio<4){
+			jogadaPC();
+		}else{
+			jogadaJogador();
+		}
+		
 	}
 
 	public void verificarVencedorTurno() {	
@@ -32,6 +61,9 @@ public class ControlPartida {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 	}
 
 	public void jogadaJogador() {

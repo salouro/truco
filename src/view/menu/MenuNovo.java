@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.ControlJogo;
 import controller.ControlPartida;
+import model.Pessoa;
 import view.jogo.JogoPrincipal;
 
 import javax.swing.JLabel;
@@ -14,11 +15,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 
 public class MenuNovo extends JDialog {
-
+	
 	private JPanel contentPane;
 	private JTextField nomeJogador;
 	private JCheckBox chckbxBaralhoLimpo;
@@ -26,7 +28,7 @@ public class MenuNovo extends JDialog {
 	private boolean tipoBaralho;
 	private ControlPartida cp;
 	private ControlJogo cj;
-	
+
 	public MenuNovo(Frame owner) {
 		super(owner);
 		setBounds(100, 100, 365, 165);
@@ -38,9 +40,9 @@ public class MenuNovo extends JDialog {
 		JLabel lblNomeJogador = new JLabel("Nome Jogador:");
 		lblNomeJogador.setBounds(12, 13, 118, 16);
 		contentPane.add(lblNomeJogador);
-		
-		cp= new ControlPartida();
-		cj= new ControlJogo();
+
+		cp = new ControlPartida();
+		cj = new ControlJogo();
 		nomeJogador = new JTextField();
 		nomeJogador.setBounds(107, 10, 228, 22);
 		contentPane.add(nomeJogador);
@@ -57,13 +59,14 @@ public class MenuNovo extends JDialog {
 				jogo.setVisible(true);
 				setTipoBaralho(chckbxBaralhoLimpo);
 				setNomeDoJogador(nomeJogador);
+				Pessoa p = new Pessoa(nomeDoJogador);
 				if (isTipoBaralho()) {
 					cj.setarBaralho(true);
 				} else {
 					cj.setarBaralho(false);
 				}
-				System.out.println("Nome jogador: " + getNomeDoJogador());
-				cp.iniciarTurno();
+				int inicio = new Random().nextInt(4) + 1;
+				cp.iniciarTurno(inicio, p.getNome());
 			}
 		});
 		btnJogar.setBounds(238, 54, 97, 25);
