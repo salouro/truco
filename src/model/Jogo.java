@@ -72,6 +72,7 @@ public class Jogo {
 	public void setPontosB(int pontosB) {
 		this.pontosB = pontosB;
 	}
+<<<<<<< HEAD
 
 	public Jogador getVencedor() {
 		return vencedor;
@@ -89,4 +90,9 @@ public class Jogo {
 		this.partidas = partidas;
 	}
 
+=======
+	
+	
+	
+>>>>>>> refs/remotes/origin/master
 }
