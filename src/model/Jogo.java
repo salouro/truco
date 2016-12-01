@@ -54,4 +54,7 @@ public class Jogo {
 	public void setPontosB(int pontosB) {
 		this.pontosB = pontosB;
 	}
+	
+	
+	
 }

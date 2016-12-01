@@ -9,6 +9,7 @@ public abstract class Jogador {
 	private List<Carta> mao;
 	private String nome;
 	private int pontuacao;
+	private Carta cartaJogada;
 
 	public Jogador(String nome) {
 		this.nome = nome;
@@ -55,4 +56,14 @@ public abstract class Jogador {
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
 	}
+
+	public Carta getCartaJogada() {
+		return cartaJogada;
+	}
+
+	public void setCartaJogada(Carta cartaJogada) {
+		this.cartaJogada = cartaJogada;
+	}
+	
+	
 }

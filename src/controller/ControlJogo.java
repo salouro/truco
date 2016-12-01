@@ -12,6 +12,10 @@ import model.CriadorPC;
 import model.CriadorPessoa;
 import model.FactoryJogador;
 import model.Jogador;
+import model.PC;
+import model.Partida;
+import model.Turno;
+
 import java.util.concurrent.Semaphore;
 
 public class ControlJogo {
@@ -81,4 +85,9 @@ public class ControlJogo {
 		return fabricaJogador.novo();
 	}
 
+	
+	public void run(Jogador jogador, Baralho baralho, Partida partida, Turno turno, PC pc, Semaphore semaforo) {
+		ControlPartida partidas = new ControlPartida(jogador, baralho, partida, turno, pc, semaforo);
+		partidas.run();
+	}
 }
