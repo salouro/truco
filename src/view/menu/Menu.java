@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 import core.MediaPlayer;
@@ -18,6 +19,7 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 	private PainelMenu painel;
 	private MenuNovo novoJogo;
 	private MediaPlayer mp;
+	private boolean pausado = false;
 
 	public Menu() {
 		painel = new PainelMenu();
@@ -25,7 +27,7 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 		this.painel.getNovo().addMouseListener(this);
 		this.painel.getPlacar().addMouseListener(this);
 		this.addKeyListener(this);
-		
+
 		try {
 			mp = new MediaPlayer("/resource/music");
 			PlayerListener teste = new PlayerListener();
@@ -33,7 +35,7 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 			mp.setListener(teste);
 			mp.run();
 		} catch (LineUnavailableException | IOException e) {
-		
+
 			e.printStackTrace();
 		}
 	}
@@ -83,6 +85,7 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+
 		try {
 
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -97,16 +100,34 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			if (pausado) {
+				mp.passaMusica();
+				mp.voltaMusica();
+				System.out.println("roda");
+				try {
+					mp.tocaMusica();
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+					e1.printStackTrace();
+				}
+				pausado = false;
+			} else {
+				System.out.println("pausa");
+				mp.pausa();
+				pausado = true;
+			}
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 
 }

@@ -64,6 +64,10 @@ public class MediaPlayer extends Thread {
 		pl.open(ad);
 		pl.start();
 	}
+	
+	public void continuaMusica(){
+		pl.start();
+	}
 
 	public void passaMusica() {
 		if (atual >= caminhos.size() - 1) {
@@ -122,6 +126,10 @@ public class MediaPlayer extends Thread {
 
 		return caminhos;
 
+	}
+	
+	public void pausa(){
+		pl.stop();
 	}
 
 	public int getAtual() {
