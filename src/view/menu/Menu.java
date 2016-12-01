@@ -101,19 +101,11 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 			e1.printStackTrace();
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_P) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_P) {
 			if (pausado) {
-				mp.passaMusica();
-				mp.voltaMusica();
-				System.out.println("roda");
-				try {
-					mp.tocaMusica();
-				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-					e1.printStackTrace();
-				}
+				mp.continuaMusica();
 				pausado = false;
 			} else {
-				System.out.println("pausa");
 				mp.pausa();
 				pausado = true;
 			}
