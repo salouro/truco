@@ -50,7 +50,7 @@ class PainelJogo extends JPanel {
 	}
 
 	private void criarTela(Jogador j) {
-		// cria as cartas e adiciona no jogo, dps é só fazer a lógica e ir
+		// cria as cartas e adiciona no jogo, dps ï¿½ sï¿½ fazer a lï¿½gica e ir
 		// mudando o icone e retirando as cartas
 		// seria melhor jogar isso dentro de uma metodo que adiciona a carta do
 		// jogo e um que remove
@@ -61,46 +61,60 @@ class PainelJogo extends JPanel {
 		this.add(manilha);
 
 		this.card = new JLabel[3];
-		int x = 276;
+		int x = 256;
 
 		for (int i = 0; i < card.length; i++) {
 			card[i] = new JLabel();
-			card[i].setName("card"+i);
-			Carta carta = j.getMao().get(i);
+			Carta carta = (Carta) j.getMao().get(i);
+
+			card[i].setName("carta" + i + "-" + carta.getNaipe().toString().toLowerCase() + "-"
+					+ carta.getValor().toString().toLowerCase());
+
 			setIconePequeno(card[i], carta.getNaipe().toString().toLowerCase(),
 					carta.getValor().toString().toLowerCase(), x);
-			x += 150;
+
+			configLabel(card[i]);
+
+			x += 175;
+
 		}
 
+	}
+
+	public void configLabel(JLabel card) {
+		card.setVisible(true);
+		this.add(card);
 	}
 
 	// hover para valores
 	public void setIconePequeno(JLabel card, String naipe, String valor, int x) {
 		System.out.println(naipe);
 		System.out.println(valor);
-			
-		ImageIcon icone = new ImageIcon(this.getClass().getResource("/resource/img/baralho/" + naipe + "/"
-				+ valor + "-de-" + naipe + ".jpg"));
-		System.out.println(this.getClass().getResource("/resource/img/baralho/" + naipe + "/"
-				+ valor + "-de-" + naipe + ".jpg"));
-		System.out.println(this.getClass().getResource("/resource/img/baralho/" + naipe + "/"
-				+ valor + "-de-" + naipe + ".jpg").getFile());
-		
-		card.setBounds(x, 362, 150, 200);
-		card.setVisible(true);
+
+		ImageIcon icone = new ImageIcon(
+				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg"));
+		System.out.println(
+				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg"));
+		System.out.println(this.getClass()
+				.getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg").getFile());
+
+		card.setBounds(x, 400, 150, 200);
 		card.setIcon(icone);
-		this.add(card);
 	}
 
 	// hover para carta costas
-	public void setIconeGrande(JLabel card) {
-		if (card.getName().equals("card1"))
-			card.setBounds(229, 362, 150, 200);
-		else if (card.getName().equals("card2"))
-			card.setBounds(389, 362, 150, 200);
-		else if (card.getName().equals("card3"))
-			card.setBounds(523, 362, 150, 200);
-		card.setIcon(cardCostasGrande);
+	public void setIconeGrande(JLabel card, String naipe, String valor) {
+
+		ImageIcon icone = new ImageIcon(this.getClass()
+				.getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + "-grande.jpg"));
+		card.setBounds(card.getX(), card.getY() - 50, card.getWidth(), card.getHeight());
+		card.setIcon(icone);
+		/*
+		 * if (card.getName().equals("card1")) card.setBounds(229, 362, 150,
+		 * 200); else if (card.getName().equals("card2")) card.setBounds(389,
+		 * 362, 150, 200); else if (card.getName().equals("card3"))
+		 * card.setBounds(523, 362, 150, 200); card.setIcon(cardCostasGrande);
+		 */
 	}
 
 	// para carta costas
@@ -113,18 +127,6 @@ class PainelJogo extends JPanel {
 		else if (card.getName().equals("card3"))
 			card.setBounds(576, 462, 73, 100);
 		card.setIcon(cardCostas);
-	}
-
-	public void setIconePequeno(JLabel card, String naipe, String valor) {
-		ImageIcon icone = new ImageIcon(
-				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + " de " + naipe + ".jpg"));
-		if (card.getName().equals("card1"))
-			card.setBounds(290, 462, 73, 100);
-		else if (card.getName().equals("card2"))
-			card.setBounds(426, 462, 73, 100);
-		else if (card.getName().equals("card3"))
-			card.setBounds(576, 462, 73, 100);
-		card.setIcon(icone);
 	}
 
 	public JLabel getManilha() {
@@ -244,7 +246,6 @@ class PainelJogo extends JPanel {
 
 	// move a carta com valor
 	public void moverCardParaMesa(JLabel card, String naipe, String valor) {
-		this.setIconePequeno(card, naipe, valor);
 		card.setBounds(424, 356, 73, 100);
 		card.removeMouseListener(card.getMouseListeners()[0]);
 	}
