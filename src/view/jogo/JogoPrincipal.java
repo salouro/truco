@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import controller.ControlJogo;
 import controller.ControlPartida;
 
 
@@ -12,12 +13,14 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 
 	private PainelJogo painel;
 	private ControlPartida cp;
+	private ControlJogo cj;
 	
-	public JogoPrincipal() {
+	public JogoPrincipal(ControlJogo cj) {
+		this.cj = cj;
 		cp = new ControlPartida();
 		this.setSize(900, 600);
 		this.setResizable(false);
-		painel = new PainelJogo();
+		painel = new PainelJogo(cj.getJogadorHumano());
 		this.setContentPane(painel);
 		this.painel.getCard1().addMouseListener(this);
 		this.painel.getCard2().addMouseListener(this);

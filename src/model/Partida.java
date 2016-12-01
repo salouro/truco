@@ -7,6 +7,7 @@ public class Partida {
 	private Jogador vencedor;
 	private int pontosDisputados;
 	private List<Turno> turnos;
+	private Carta vira;
 
 	public Partida() {
 		this.turnos = new ArrayList<Turno>();
@@ -34,6 +35,15 @@ public class Partida {
 
 	public void setTurnos(List<Turno> turnos) {
 		this.turnos = turnos;
+	}
+	
+
+	public Carta getVira() {
+		return vira;
+	}
+
+	public void setVira(Carta vira) {
+		this.vira = vira;
 	}
 
 }

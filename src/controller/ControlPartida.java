@@ -1,19 +1,22 @@
 package controller;
 
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
+import model.Baralho;
+import model.Carta;
+import model.Jogador;
 import model.PC;
+import model.Partida;
 
 public class ControlPartida {
-	public ControlPartida() {
-		PC p1 = new PC("Zé");
-		PC p2 = new PC("Chitão");
-		PC p3 = new PC("Marrone");
-		
-		System.out.println(p1.getNome());
-		System.out.println(p2.getNome());
-		System.out.println(p3.getNome());
-		
+	private Partida partida;
+	private ControlTurno ct;
+	
+	
+	public ControlPartida() {		
+		this.ct = new ControlTurno();
 	}
 
 	public void iniciarTurno(int inicio, String nome) {
@@ -38,6 +41,40 @@ public class ControlPartida {
 			jogadaJogador();
 		}
 		
+	}
+	
+	public void distribuiCartas(Set<Jogador> j, Baralho b){
+		embaralhar(b);
+		
+		for (int i = 0; i < 3; i++){
+			for (Jogador jo : j){
+				jo.addCarta(b.getCartas().remove(0));
+			}
+		}
+		
+		for (Jogador jo : j){
+			System.out.println(jo.getNome());
+			
+			for (Carta c : jo.getMao()){
+				System.out.println(c.getValor() + " de " + c.getNaipe());
+			}
+		}
+	}
+	
+	public void embaralhar(Baralho b) {
+		List<Carta> cartas = b.getCartas();
+		Random gerador = new Random();
+		Carta aux;
+		int indice;
+
+		for (int j = 0; j < 50; j++) {
+			for (int i = 0; i < cartas.size(); i++) {
+				indice = gerador.nextInt(cartas.size());
+				aux = cartas.get(indice);
+				cartas.set(indice, cartas.get(i));
+				cartas.set(i, aux);
+			}
+		}
 	}
 
 	public void verificarVencedorTurno() {	

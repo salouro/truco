@@ -14,10 +14,23 @@ public class Jogo {
 	private int pontosB;
 	private Jogador vencedor;
 	private List<Partida> partidas;
+	private Baralho baralho;
 
 	public Jogo() {
 		this.jogadores = new HashSet<Jogador>();
 		this.partidas = new ArrayList<Partida>();
+	}
+
+	public void addJogador(Jogador j) {
+		jogadores.add(j);
+	}
+
+	public Baralho getBaralho() {
+		return baralho;
+	}
+
+	public void setBaralho(Baralho baralho) {
+		this.baralho = baralho;
 	}
 
 	public Set<Jogador> getJogadores() {
