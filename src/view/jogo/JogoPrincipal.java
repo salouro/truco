@@ -21,6 +21,7 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		cp = new ControlPartida();
 		this.setSize(900, 600);
 		this.setResizable(false);
+		cp.distribuiCartas(cj.getJogo().getJogadores(), cj.getJogo().getB());
 		painel = new PainelJogo(cj.getJogadorHumano());
 		this.setContentPane(painel);
 		this.painel.getCard1().addMouseListener(this);
@@ -38,65 +39,28 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		JLabel card = null;
 		int pontuacaoA = jogo.getPontosA();
 		int pontuacaoB = jogo.getPontosB();
-		
+
 		jogo.setPontosA(++pontuacaoA);
 		jogo.setPontosB(++pontuacaoB);
-		
-		painel.atualizaPlacar(pontuacaoA,pontuacaoB);
-		
 
-		// caso seja clicado na carta1
-		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) { 
-			if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
-				card = painel.getCard1();
-			} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
-				card = painel.getCard2();
-			} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
-				card = painel.getCard3();
-			}
-			for (Carta carta : cartas) {
-				if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
-						&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
-					c = carta;
-				}
-			}
-			this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(), c.getValor().toString().toLowerCase());
-			cp.jogadaJogador();
-		// caso seja clicado na carta2	
-		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) { 
-			if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
-				card = painel.getCard1();
-			} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
-				card = painel.getCard2();
-			} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
-				card = painel.getCard3();
-			}
-			for (Carta carta : cartas) {
-				if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
-						&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
-					c = carta;
-				}
-			}
-			this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(), c.getValor().toString().toLowerCase());
-			cp.jogadaJogador();
-		// caso seja clicado na carta3
-		} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) { 
-			if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
-				card = painel.getCard1();
-			} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
-				card = painel.getCard2();
-			} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
-				card = painel.getCard3();
-			}
-			for (Carta carta : cartas) {
-				if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
-						&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
-					c = carta;
-				}
-			}
-			this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(), c.getValor().toString().toLowerCase());
-			cp.jogadaJogador();
+		painel.atualizaPlacar(pontuacaoA, pontuacaoB);
+
+		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
+			card = painel.getCard1();
+		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
+			card = painel.getCard2();
+		} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
+			card = painel.getCard3();
 		}
+		for (Carta carta : cartas) {
+			if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
+					&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
+				c = carta;
+			}
+		}
+		this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(),
+				c.getValor().toString().toLowerCase());
+		cp.jogadaJogador();
 
 	}
 
@@ -161,8 +125,6 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 				card.getX());
 
 	}
-	
-	
 
 	public PainelJogo getPainel() {
 		return painel;

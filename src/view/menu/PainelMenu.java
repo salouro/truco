@@ -50,87 +50,8 @@ public class PainelMenu extends JPanel{
 		this.placar.setName("placar");
 		this.add(placar);
 		this.placar.setBounds(177, 186, 139, 52);
-
-		/*
-		 * novo.addMouseListener(new MouseListener() {
-		 * 
-		 * @Override public void mouseReleased(java.awt.event.MouseEvent arg0) {
-		 * }
-		 * 
-		 * @Override public void mousePressed(java.awt.event.MouseEvent arg0) {
-		 * }
-		 * 
-		 * @Override public void mouseExited(java.awt.event.MouseEvent arg0) {
-		 * novo.setIcon(novoIcon); }
-		 * 
-		 * @Override public void mouseEntered(java.awt.event.MouseEvent arg0) {
-		 * novo.setIcon(novoHoverIcon); }
-		 * 
-		 * @Override public void mouseClicked(java.awt.event.MouseEvent arg0) {
-		 * System.out.println(arg0.getComponent().getName()); novoJogo = new
-		 * MenuNovo(); } });
-		 * 
-		 * placar.addMouseListener(new MouseListener() {
-		 * 
-		 * @Override public void mouseReleased(java.awt.event.MouseEvent arg0) {
-		 * }
-		 * 
-		 * @Override public void mousePressed(java.awt.event.MouseEvent arg0) {
-		 * }
-		 * 
-		 * @Override public void mouseExited(java.awt.event.MouseEvent arg0) {
-		 * placar.setIcon(placarIcon); }
-		 * 
-		 * @Override public void mouseEntered(java.awt.event.MouseEvent arg0) {
-		 * placar.setIcon(placarHoverIcon); }
-		 * 
-		 * @Override public void mouseClicked(java.awt.event.MouseEvent arg0) {
-		 * } });
-		 */
-
 	}
-/*
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		String name = e.getComponent().getName();
-		
-		if (name.equalsIgnoreCase(this.novo.getName())){
-			this.setEnabled(false);
-			this.novoJogo = new MenuNovo();
-			this.novoJogo.setVisible(true);
-		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		String name = e.getComponent().getName();
-
-		if (name.equalsIgnoreCase(novo.getName())) {
-			this.novo.setIcon(this.novoHoverIcon);
-		} else if (name.equalsIgnoreCase(placar.getName())) {
-			this.placar.setIcon(this.placarHoverIcon);
-		}
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		String name = e.getComponent().getName();
-
-		if (name.equalsIgnoreCase(novo.getName())) {
-			this.novo.setIcon(this.novoIcon);
-		} else if (name.equalsIgnoreCase(placar.getName())) {
-			this.placar.setIcon(this.placarIcon);
-		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}*/
-
+	
 	public JLabel getNovo() {
 		return novo;
 	}

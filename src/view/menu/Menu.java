@@ -24,6 +24,7 @@ public class Menu extends JFrame implements MouseListener, KeyListener {
 		this.setContentPane(painel);
 		this.painel.getNovo().addMouseListener(this);
 		this.painel.getPlacar().addMouseListener(this);
+		this.painel.addKeyListener(this);
 		this.addKeyListener(this);
 
 		try {
