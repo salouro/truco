@@ -1,6 +1,8 @@
 package controller;
 
 
+import java.util.Set;
+
 import enumerated.Naipe;
 import enumerated.Valor;
 import model.Baralho;
@@ -88,20 +90,19 @@ public class ControlJogo {
 		setarJogadoresJogo(nome, numerojogadores);
 		setarBaralho(tipo);
 		
-		for (Jogador j : jogo.getJogadores()){
+		/*for (Jogador j : jogo.getJogadores()){
 			System.out.println(j.getNome());
 		}
 		
 		for (Carta c : jogo.getB().getCartas()){
 			System.out.println(c.getValor() + " de " + c.getNaipe());
-		}
-		
-		cp.distribuiCartas(jogo.getJogadores(), jogo.getB());
+		}*/
 	}
 	
 	public Jogador getJogadorHumano(){
-		for (Jogador j : jogo.getJogadores()){
-			System.out.println(j.getNome());
+		Set<Jogador> jogadores = jogo.getJogadores();
+		
+		for (Jogador j : jogadores){
 			if (!j.getNome().contains("Computador")){
 				return j;
 			}
