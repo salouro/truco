@@ -34,6 +34,8 @@ public class ControlPartida {
 			for (Jogador jo : j){
 				jo.addCarta(b.getCartas().remove(0));
 			}
+		partida.setManilha(b.getCartas().remove(0));
+		
 		}
 		
 		for (Jogador jo : j){

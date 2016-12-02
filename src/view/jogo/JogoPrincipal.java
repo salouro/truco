@@ -32,7 +32,12 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		painel = new PainelJogo();
 		this.setContentPane(painel);
 				
+		
 		inicioPartida();
+
+		this.painel.setManilha(cp.getPartida().getManilha().getNaipe().toString().toLowerCase(), 
+				cp.getPartida().getManilha().getValor().toString().toLowerCase());
+
 	}
 	
 	public void addCardMouseListener(){

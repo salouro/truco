@@ -98,22 +98,22 @@ public class PainelJogo extends JPanel {
 		this.add(placar);
 
 		lblPedirTruco = new JLabel("TRUCO");
-		lblPedirTruco.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblPedirTruco.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 50));
 		lblPedirTruco.setBounds(706, 200, 188, 104);
 		this.add(lblPedirTruco);
 
 		lblVirarCarta = new JLabel("VIRAR");
-		lblVirarCarta.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblVirarCarta.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 50));
 		lblVirarCarta.setBounds(12, 200, 188, 104);
 		this.add(lblVirarCarta);
 
 		lblDesce = new JLabel("DESCE");
-		lblDesce.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblDesce.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 50));
 		lblDesce.setBounds(706, 277, 171, 104);
 		this.add(lblDesce);
 
 		lblCorre = new JLabel("CORRE");
-		lblCorre.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblCorre.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 50));
 		lblCorre.setBounds(12, 277, 188, 104);
 		this.add(lblCorre);
 
@@ -372,7 +372,7 @@ public class PainelJogo extends JPanel {
 
 	public void setManilha(String naipe, String valor) {
 		ImageIcon icone = new ImageIcon(
-				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + " de " + naipe + ".jpg"));
+				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg"));
 		this.manilha.setIcon(icone);
 	}
 
