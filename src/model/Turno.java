@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Turno {
 	private int numero;
-	private List<Carta> cartasJogadas;
+	private List<CartaJogada> cartasJogadas;
 	private Jogador vencedor;
 
 	public Turno() {
-		this.cartasJogadas = new ArrayList<Carta>();
+		this.cartasJogadas = new ArrayList<CartaJogada>();
 	}
 
-	public void addCarta(Carta c) {
+	public void addCarta(CartaJogada c) {
 		this.cartasJogadas.add(c);
 	}
 
@@ -25,11 +25,11 @@ public class Turno {
 		this.numero = numero;
 	}
 
-	public List<Carta> getCartasJogadas() {
+	public List<CartaJogada> getCartasJogadas() {
 		return cartasJogadas;
 	}
 
-	public void setCartasJogadas(List<Carta> cartasJogadas) {
+	public void setCartasJogadas(List<CartaJogada> cartasJogadas) {
 		this.cartasJogadas = cartasJogadas;
 	}
 
