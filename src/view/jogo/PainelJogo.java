@@ -1,5 +1,6 @@
 package view.jogo;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -14,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import model.Carta;
 import model.Jogador;
 
-class PainelJogo extends JPanel {
+public class PainelJogo extends JPanel {
 
 	private JLabel card[];
 	private JLabel manilha;
@@ -24,10 +25,12 @@ class PainelJogo extends JPanel {
 	private JLabel cardJogadoPc;
 	private ImageIcon iconCardJogadoPc;
 	private JLabel placar;
-	private JLabel nomeJogador;
-	private JLabel tipoBaralho;
-	private JLabel pedirTruco;
-	private JLabel virarCard;
+	private JLabel lblNomeJogador;
+	private JLabel lblTipoBaralho;
+	private JLabel lblPedirTruco;
+	private JLabel lblVirarCarta;
+	private JLabel lblDesce;
+	private JLabel lblCorre;
 	private ImageIcon iconPedirTruco;
 	protected ImageIcon cardCostasGrande = new ImageIcon(
 			this.getClass().getResource("/resource/img/cenario/carta-costas grande.png"));
@@ -59,6 +62,9 @@ class PainelJogo extends JPanel {
 		this.manilha.setBounds(399, 247, 73, 100);
 		this.manilha.setIcon(new ImageIcon(this.getClass().getResource("/resource/img/cenario/carta-costas.png")));
 		this.add(manilha);
+		
+		
+
 
 		this.card = new JLabel[3];
 		int x = 256;
@@ -78,6 +84,37 @@ class PainelJogo extends JPanel {
 			x += 175;
 
 		}
+		
+		
+		lblNomeJogador = new JLabel();
+		lblNomeJogador.setFont(new Font("Showcard Gothic", Font.BOLD, 20));
+		lblNomeJogador.setBounds(33, 492, 812, 48);
+		this.add(lblNomeJogador);
+		
+		placar = new JLabel();
+		placar.setBounds(196, 13, 649, 86);
+		placar.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 42));
+		this.add(placar);
+		
+		lblPedirTruco = new JLabel("TRUCO");
+		lblPedirTruco.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblPedirTruco.setBounds(706, 200, 188, 104);
+		this.add(lblPedirTruco);
+		
+		lblVirarCarta = new JLabel("VIRAR");
+		lblVirarCarta.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblVirarCarta.setBounds(12, 200, 188, 104);
+		this.add(lblVirarCarta);
+		
+		lblDesce = new JLabel("DESCE");
+		lblDesce.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblDesce.setBounds(706, 277, 171, 104);
+		this.add(lblDesce);
+		
+		lblCorre = new JLabel("CORRE");
+		lblCorre.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
+		lblCorre.setBounds(12, 277, 188, 104);
+		this.add(lblCorre);
 
 	}
 
@@ -178,11 +215,11 @@ class PainelJogo extends JPanel {
 	}
 
 	public JLabel getNomeJogador() {
-		return nomeJogador;
+		return lblNomeJogador;
 	}
 
 	public void setNomeJogador(JLabel nomeJogador) {
-		this.nomeJogador = nomeJogador;
+		this.lblNomeJogador = nomeJogador;
 	}
 
 	public ImageIcon getIconPedirTruco() {
@@ -202,27 +239,27 @@ class PainelJogo extends JPanel {
 	}
 
 	public JLabel getTipoBaralho() {
-		return tipoBaralho;
+		return lblTipoBaralho;
 	}
 
 	public void setTipoBaralho(JLabel tipoBaralho) {
-		this.tipoBaralho = tipoBaralho;
+		this.lblTipoBaralho = tipoBaralho;
 	}
 
 	public JLabel getPedirTruco() {
-		return pedirTruco;
+		return lblPedirTruco;
 	}
 
 	public void setPedirTruco(JLabel pedirTruco) {
-		this.pedirTruco = pedirTruco;
+		this.lblPedirTruco = pedirTruco;
 	}
 
 	public JLabel getVirarCard() {
-		return virarCard;
+		return lblVirarCarta;
 	}
 
 	public void setVirarCard(JLabel virarCard) {
-		this.virarCard = virarCard;
+		this.lblVirarCarta = virarCard;
 	}
 
 	public JLabel getCard1() {
@@ -235,6 +272,80 @@ class PainelJogo extends JPanel {
 
 	public JLabel getCard3() {
 		return card[2];
+	}
+	
+	
+	
+	public JLabel[] getCard() {
+		return card;
+	}
+
+	public void setCard(JLabel[] card) {
+		this.card = card;
+	}
+
+	public JLabel getLblNomeJogador() {
+		return lblNomeJogador;
+	}
+
+	public void setLblNomeJogador(JLabel lblNomeJogador) {
+		this.lblNomeJogador = lblNomeJogador;
+	}
+
+	public JLabel getLblTipoBaralho() {
+		return lblTipoBaralho;
+	}
+
+	public void setLblTipoBaralho(JLabel lblTipoBaralho) {
+		this.lblTipoBaralho = lblTipoBaralho;
+	}
+
+	public JLabel getLblPedirTruco() {
+		return lblPedirTruco;
+	}
+
+	public void setLblPedirTruco(JLabel lblPedirTruco) {
+		this.lblPedirTruco = lblPedirTruco;
+	}
+
+	public JLabel getLblVirarCarta() {
+		return lblVirarCarta;
+	}
+
+	public void setLblVirarCarta(JLabel lblVirarCarta) {
+		this.lblVirarCarta = lblVirarCarta;
+	}
+
+	public JLabel getLblDesce() {
+		return lblDesce;
+	}
+
+	public void setLblDesce(JLabel lblDesce) {
+		this.lblDesce = lblDesce;
+	}
+
+	public JLabel getLblCorre() {
+		return lblCorre;
+	}
+
+	public void setLblCorre(JLabel lblCorre) {
+		this.lblCorre = lblCorre;
+	}
+
+	public ImageIcon getCardCostasGrande() {
+		return cardCostasGrande;
+	}
+
+	public void setCardCostasGrande(ImageIcon cardCostasGrande) {
+		this.cardCostasGrande = cardCostasGrande;
+	}
+
+	public ImageIcon getCardCostas() {
+		return cardCostas;
+	}
+
+	public void setCardCostas(ImageIcon cardCostas) {
+		this.cardCostas = cardCostas;
 	}
 
 	// aqui move a carta costas
@@ -259,5 +370,7 @@ class PainelJogo extends JPanel {
 				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + " de " + naipe + ".jpg"));
 		this.manilha.setIcon(icone);
 	}
+	
+	
 
 }

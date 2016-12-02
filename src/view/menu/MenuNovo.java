@@ -83,7 +83,8 @@ public class MenuNovo extends JDialog implements ActionListener {
 		jogo.setVisible(true);
 		setTipoBaralho(chckbxBaralhoLimpo);
 		setNomeDoJogador(nomeJogador);
-
+		jogo.getPainel().getNomeJogador().setText("Player: " + getNomeDoJogador());;
+		jogo.getPainel().getPlacar().setText("Placar: "  + getNomeDoJogador() + " 0 X 0 PC");
 		
 		
 	}

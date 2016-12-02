@@ -118,6 +118,16 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 				card.getX());
 
 	}
+	
+	
+
+	public PainelJogo getPainel() {
+		return painel;
+	}
+
+	public void setPainel(PainelJogo painel) {
+		this.painel = painel;
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
