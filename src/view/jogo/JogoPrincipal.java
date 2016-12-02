@@ -3,6 +3,7 @@ package view.jogo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +11,8 @@ import javax.swing.JLabel;
 import controller.ControlJogo;
 import controller.ControlPartida;
 import model.Carta;
+import model.Jogador;
+import model.Jogo;
 
 public class JogoPrincipal extends JFrame implements MouseListener {
 
@@ -34,6 +37,18 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		String name = e.getComponent().getName();
 
+		Jogo jogo = cj.getJogo();
+		int pontuacaoA = jogo.getPontosA();
+		int pontuacaoB = jogo.getPontosB();
+		
+		jogo.setPontosA(++pontuacaoA);
+		jogo.setPontosB(++pontuacaoB);
+		
+		painel.atualizaPlacar(pontuacaoA,pontuacaoB);
+		
+		
+		
+		
 		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) { // caso
 																		// seja
 																		// clicado

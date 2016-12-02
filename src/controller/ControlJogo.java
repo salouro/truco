@@ -110,4 +110,14 @@ public class ControlJogo {
 		return null;
 	}
 
+	public Jogo getJogo() {
+		return jogo;
+	}
+
+	public void setJogo(Jogo jogo) {
+		this.jogo = jogo;
+	}
+	
+	
+
 }

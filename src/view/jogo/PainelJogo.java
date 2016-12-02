@@ -166,6 +166,13 @@ public class PainelJogo extends JPanel {
 		card.setIcon(cardCostas);
 	}
 
+	
+	public void atualizaPlacar(int pontosJogador, int pontosPC) {
+		placar.setText("Placar: " + lblNomeJogador.getText() + " " + pontosJogador + " X " + pontosPC + " PC");
+	}
+	
+	
+	
 	public JLabel getManilha() {
 		return manilha;
 	}
