@@ -97,7 +97,7 @@ public class ControlJogo {
 		}
 		
 		for (Carta c : jogo.getB().getCartas()){
-			System.out.println(c.getValor() + " de " + c.getNaipe());
+			System.out.println(c.getValo	r() + " de " + c.getNaipe());
 		}*/
 	}
 	
@@ -106,6 +106,18 @@ public class ControlJogo {
 		
 		for (Jogador j : jogadores){
 			if (!j.getNome().contains("Computador")){
+				return j;
+			}
+		}
+		
+		return null;
+	}
+	
+	public Jogador getJogadorpC(){
+		Set<Jogador> jogadores = jogo.getJogadores();
+		
+		for (Jogador j : jogadores){
+			if (j.getNome().contains("Computador")){
 				return j;
 			}
 		}

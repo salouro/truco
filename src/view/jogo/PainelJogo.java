@@ -20,11 +20,11 @@ public class PainelJogo extends JPanel {
 	private JLabel card[];
 	private JLabel cartaMesa;
 	private JLabel manilha;
+	private JLabel cartaPc;
 	private ImageIcon iconCard1;
 	private ImageIcon iconCard2;
 	private ImageIcon iconCard3;
 	private JLabel cardJogadoPc;
-	private ImageIcon iconCardJogadoPc;
 	private JLabel placar;
 	private JLabel lblNomeJogador;
 	private JLabel lblTipoBaralho;
@@ -65,8 +65,15 @@ public class PainelJogo extends JPanel {
 
 		this.cartaMesa = new JLabel();
 		this.cartaMesa.setBounds(424, 356, 73, 100);
+		
+		this.cartaPc = new JLabel();
+		cartaPc.setIcon(cardCostas);
+		this.cartaPc.setBounds( 424, 138, 73, 100);
+		
+		this.cartaPc.setVisible(true);
 		this.cartaMesa.setVisible(false);
 		this.add(cartaMesa);
+		this.add(cartaPc);
 		
 		this.card = new JLabel[3];
 		int x = 256;
@@ -222,14 +229,6 @@ public class PainelJogo extends JPanel {
 		this.iconCard3 = iconCard3;
 	}
 
-	public ImageIcon getIconCardJogadoPc() {
-		return iconCardJogadoPc;
-	}
-
-	public void setIconCardJogadoPc(ImageIcon iconCardJogadoPc) {
-		this.iconCardJogadoPc = iconCardJogadoPc;
-	}
-
 	public JLabel getPlacar() {
 		return placar;
 	}
@@ -374,6 +373,20 @@ public class PainelJogo extends JPanel {
 		ImageIcon icone = new ImageIcon(
 				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg"));
 		this.manilha.setIcon(icone);
+	}
+
+	public JLabel getCartaPc() {
+		return cartaPc;
+	}
+
+	public void setCartaPc(JLabel cartaPc) {
+		this.cartaPc = cartaPc;
+	}
+	
+	public void viraCartaPc(String naipe, String valor){
+		ImageIcon icone = new ImageIcon(this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg"));
+		this.cartaPc.setIcon(icone);
+		this.setVisible(true);
 	}
 
 }

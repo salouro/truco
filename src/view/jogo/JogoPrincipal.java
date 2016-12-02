@@ -3,50 +3,53 @@ package view.jogo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.Set;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import controller.ControlJogo;
 import controller.ControlPartida;
 import controller.ControlTurno;
 import model.Carta;
+import model.Jogador;
 import model.Jogo;
 
 public class JogoPrincipal extends JFrame implements MouseListener {
-
+	
+	private int i = 0;
 	private PainelJogo painel;
 	private ControlPartida cp;
 	private ControlJogo cj;
 	private ControlTurno ct;
 
 	public JogoPrincipal(String nome, boolean tipo, int n) {
-		
+
 		ct = new ControlTurno();
 		cp = new ControlPartida(ct);
 		cj = new ControlJogo(cp);
-		
+
 		cj.iniciaJogo(nome, tipo, n);
-		
+
 		this.setSize(900, 600);
 		this.setResizable(false);
-		
+
 		painel = new PainelJogo();
 		this.setContentPane(painel);
-				
-		
+
 		inicioPartida();
 
-		this.painel.setManilha(cp.getPartida().getManilha().getNaipe().toString().toLowerCase(), 
+		this.painel.setManilha(cp.getPartida().getManilha().getNaipe().toString().toLowerCase(),
 				cp.getPartida().getManilha().getValor().toString().toLowerCase());
 
 	}
-	
-	public void addCardMouseListener(){
+
+	public void addCardMouseListener() {
 		this.painel.getCard1().addMouseListener(this);
 		this.painel.getCard2().addMouseListener(this);
 		this.painel.getCard3().addMouseListener(this);
 	}
-	
-	public void inicioPartida(){
+
+	public void inicioPartida() {
 		cp.distribuiCartas(cj.getJogo().getJogadores(), cj.getJogo().getB());
 		painel.criarTela(cj.getJogadorHumano());
 		addCardMouseListener();
@@ -59,6 +62,7 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		Carta c = null;
 		Jogo jogo = cj.getJogo();
 		List<Carta> cartas = cj.getJogadorHumano().getMao();
+		List<Carta> cartaPc = cj.getJogadorpC().getMao();
 		JLabel card = null;
 		int pontuacaoA = jogo.getPontosA();
 		int pontuacaoB = jogo.getPontosB();
@@ -84,8 +88,14 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		
 		this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(),
 				c.getValor().toString().toLowerCase());
-		
+
 		ct.jogaCarta(c, cj.getJogo().getJogadores());
+
+		
+		c = cartaPc.get(i);
+		i++;
+		painel.viraCartaPc(c.getNaipe().toString(), c.getValor().toString());
+
 
 	}
 
@@ -125,7 +135,6 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		Carta c = null;
 		JLabel card = null;
 		List<Carta> cartas = cj.getJogadorHumano().getMao();
-
 		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
 			card = painel.getCard1();
 		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {

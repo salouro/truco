@@ -86,7 +86,6 @@ public class ControlPartida {
 		}
 		
 		
-		
 	}
 
 	public void jogadaJogador() {
