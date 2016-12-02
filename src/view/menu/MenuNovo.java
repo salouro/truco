@@ -26,7 +26,6 @@ public class MenuNovo extends JDialog implements ActionListener {
 	private JCheckBox chckbxBaralhoLimpo;
 	private String nomeDoJogador;
 	private boolean tipoBaralho;
-	private ControlJogo cj;
 
 	public MenuNovo(Frame owner) {
 		super(owner);
@@ -54,7 +53,6 @@ public class MenuNovo extends JDialog implements ActionListener {
 		btnJogar.setBounds(238, 54, 97, 25);
 		contentPane.add(btnJogar);
 
-		cj = new ControlJogo();
 	}
 
 	public String getNomeDoJogador() {
@@ -77,9 +75,8 @@ public class MenuNovo extends JDialog implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		cj.iniciaJogo(nomeJogador.getText(), isTipoBaralho(), 2);
 		
-		JogoPrincipal jogo = new JogoPrincipal(cj);
+		JogoPrincipal jogo = new JogoPrincipal(nomeJogador.getText(), isTipoBaralho(), 2);
 		jogo.setVisible(true);
 		setTipoBaralho(chckbxBaralhoLimpo);
 		setNomeDoJogador(nomeJogador);

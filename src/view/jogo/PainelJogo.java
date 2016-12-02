@@ -18,6 +18,7 @@ import model.Jogador;
 public class PainelJogo extends JPanel {
 
 	private JLabel card[];
+	private JLabel cartaMesa;
 	private JLabel manilha;
 	private ImageIcon iconCard1;
 	private ImageIcon iconCard2;
@@ -37,10 +38,9 @@ public class PainelJogo extends JPanel {
 	protected ImageIcon cardCostas = new ImageIcon(
 			this.getClass().getResource("/resource/img/cenario/carta-costas.png"));
 
-	public PainelJogo(Jogador j) {
+	public PainelJogo() {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
-		criarTela(j);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -52,7 +52,7 @@ public class PainelJogo extends JPanel {
 
 	}
 
-	private void criarTela(Jogador j) {
+	public void criarTela(Jogador j) {
 		// cria as cartas e adiciona no jogo, dps � s� fazer a l�gica e ir
 		// mudando o icone e retirando as cartas
 		// seria melhor jogar isso dentro de uma metodo que adiciona a carta do
@@ -62,10 +62,12 @@ public class PainelJogo extends JPanel {
 		this.manilha.setBounds(399, 247, 73, 100);
 		this.manilha.setIcon(new ImageIcon(this.getClass().getResource("/resource/img/cenario/carta-costas.png")));
 		this.add(manilha);
-		
-		
 
-
+		this.cartaMesa = new JLabel();
+		this.cartaMesa.setBounds(424, 356, 73, 100);
+		this.cartaMesa.setVisible(false);
+		this.add(cartaMesa);
+		
 		this.card = new JLabel[3];
 		int x = 256;
 
@@ -84,33 +86,32 @@ public class PainelJogo extends JPanel {
 			x += 175;
 
 		}
-		
-		
+
 		lblNomeJogador = new JLabel();
 		lblNomeJogador.setFont(new Font("Showcard Gothic", Font.BOLD, 20));
 		lblNomeJogador.setBounds(33, 492, 812, 48);
 		this.add(lblNomeJogador);
-		
+
 		placar = new JLabel();
 		placar.setBounds(196, 13, 649, 86);
 		placar.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 42));
 		this.add(placar);
-		
+
 		lblPedirTruco = new JLabel("TRUCO");
 		lblPedirTruco.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
 		lblPedirTruco.setBounds(706, 200, 188, 104);
 		this.add(lblPedirTruco);
-		
+
 		lblVirarCarta = new JLabel("VIRAR");
 		lblVirarCarta.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
 		lblVirarCarta.setBounds(12, 200, 188, 104);
 		this.add(lblVirarCarta);
-		
+
 		lblDesce = new JLabel("DESCE");
 		lblDesce.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
 		lblDesce.setBounds(706, 277, 171, 104);
 		this.add(lblDesce);
-		
+
 		lblCorre = new JLabel("CORRE");
 		lblCorre.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 58));
 		lblCorre.setBounds(12, 277, 188, 104);
@@ -166,13 +167,29 @@ public class PainelJogo extends JPanel {
 		card.setIcon(cardCostas);
 	}
 
-	
 	public void atualizaPlacar(int pontosJogador, int pontosPC) {
 		placar.setText("Placar: " + lblNomeJogador.getText() + " " + pontosJogador + " X " + pontosPC + " PC");
 	}
-	
-	
-	
+
+	// aqui move a carta costas
+	public void moverCardParaMesa(JLabel card) {
+		this.setIconePequeno(card);
+		card.setBounds(424, 356, 73, 100);
+		card.removeMouseListener(card.getMouseListeners()[0]);
+	}
+
+	// move a carta com valor
+	public void moverCardParaMesa(JLabel card, String naipe, String valor) {
+		System.out.println(card.getName());
+		System.out.println(naipe);
+		System.out.println(valor);
+		cartaMesa.setIcon(new ImageIcon(
+				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + "-de-" + naipe + ".jpg")));
+		cartaMesa.setVisible(true);
+		card.setVisible(false);
+		card.removeMouseListener(card.getMouseListeners()[0]);
+	}
+
 	public JLabel getManilha() {
 		return manilha;
 	}
@@ -280,9 +297,7 @@ public class PainelJogo extends JPanel {
 	public JLabel getCard3() {
 		return card[2];
 	}
-	
-	
-	
+
 	public JLabel[] getCard() {
 		return card;
 	}
@@ -355,29 +370,10 @@ public class PainelJogo extends JPanel {
 		this.cardCostas = cardCostas;
 	}
 
-	// aqui move a carta costas
-	public void moverCardParaMesa(JLabel card) {
-		this.setIconePequeno(card);
-		card.setBounds(424, 356, 73, 100);
-		card.removeMouseListener(card.getMouseListeners()[0]);
-	}
-
-	// move a carta com valor
-	public void moverCardParaMesa(JLabel card, String naipe, String valor) {
-		card.setBounds(424, 356, 73, 100);
-		card.removeMouseListener(card.getMouseListeners()[0]);
-	}
-
-	public void distribuirCartas(String carta1, String carta2, String carta3) {
-
-	}
-
 	public void setManilha(String naipe, String valor) {
 		ImageIcon icone = new ImageIcon(
 				this.getClass().getResource("/resource/img/baralho/" + naipe + "/" + valor + " de " + naipe + ".jpg"));
 		this.manilha.setIcon(icone);
 	}
-	
-	
 
 }

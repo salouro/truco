@@ -14,12 +14,17 @@ public class ControlPartida {
 	private ControlTurno ct;
 	private Partida partida;
 	
-	public ControlPartida() {		
-		this.ct = new ControlTurno();
+	public ControlPartida(ControlTurno ct) {		
+		this.ct = ct;
+	}
+	
+	public void novaPartida(){
+		setPartida(new Partida());
 	}
 
 	public void iniciarTurno() {
-		
+		ct.criaTurno();
+		partida.addTurno(ct.getTurno());
 	}
 	
 	public void distribuiCartas(Set<Jogador> j, Baralho b){
@@ -86,4 +91,19 @@ public class ControlPartida {
 		
 	}
 
+	public ControlTurno getCt() {
+		return ct;
+	}
+
+	public void setCt(ControlTurno ct) {
+		this.ct = ct;
+	}
+
+	public Partida getPartida() {
+		return partida;
+	}
+
+	public void setPartida(Partida partida) {
+		this.partida = partida;
+	}
 }

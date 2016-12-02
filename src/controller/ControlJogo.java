@@ -23,11 +23,11 @@ public class ControlJogo {
 	private Jogo jogo;
 	private ControlPartida cp;
 
-	public ControlJogo() {
+	public ControlJogo(ControlPartida cp) {
 		this.fabricaCarta = new CriadorCarta();
 		this.valores = Valor.values();
 		this.naipes = Naipe.values();
-		this.cp = new ControlPartida();
+		this.cp = cp;
 	}
 
 	public void setarBaralho(boolean bool) {
@@ -89,6 +89,8 @@ public class ControlJogo {
 		this.jogo.setNumeroJogadores(numerojogadores);
 		setarJogadoresJogo(nome, numerojogadores);
 		setarBaralho(tipo);
+		cp.novaPartida();
+		this.jogo.addPartida(cp.getPartida());
 		
 		/*for (Jogador j : jogo.getJogadores()){
 			System.out.println(j.getNome());

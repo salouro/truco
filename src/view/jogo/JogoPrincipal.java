@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import controller.ControlJogo;
 import controller.ControlPartida;
+import controller.ControlTurno;
 import model.Carta;
 import model.Jogo;
 
@@ -15,19 +16,36 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 	private PainelJogo painel;
 	private ControlPartida cp;
 	private ControlJogo cj;
+	private ControlTurno ct;
 
-	public JogoPrincipal(ControlJogo cj) {
-		this.cj = cj;
-		cp = new ControlPartida();
+	public JogoPrincipal(String nome, boolean tipo, int n) {
+		
+		ct = new ControlTurno();
+		cp = new ControlPartida(ct);
+		cj = new ControlJogo(cp);
+		
+		cj.iniciaJogo(nome, tipo, n);
+		
 		this.setSize(900, 600);
 		this.setResizable(false);
-		cp.distribuiCartas(cj.getJogo().getJogadores(), cj.getJogo().getB());
-		painel = new PainelJogo(cj.getJogadorHumano());
+		
+		painel = new PainelJogo();
 		this.setContentPane(painel);
+				
+		inicioPartida();
+	}
+	
+	public void addCardMouseListener(){
 		this.painel.getCard1().addMouseListener(this);
 		this.painel.getCard2().addMouseListener(this);
 		this.painel.getCard3().addMouseListener(this);
-
+	}
+	
+	public void inicioPartida(){
+		cp.distribuiCartas(cj.getJogo().getJogadores(), cj.getJogo().getB());
+		painel.criarTela(cj.getJogadorHumano());
+		addCardMouseListener();
+		cp.iniciarTurno();
 	}
 
 	@Override
@@ -58,9 +76,11 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 				c = carta;
 			}
 		}
+		
 		this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(),
 				c.getValor().toString().toLowerCase());
-		cp.jogadaJogador();
+		
+		ct.jogaCarta(c, cj.getJogo().getJogadores());
 
 	}
 

@@ -4,8 +4,9 @@ public class CartaJogada {
 	private Carta carta;
 	private Jogador jogador;
 	
-	public CartaJogada(){
-		
+	public CartaJogada(Carta carta, Jogador jogador){
+		this.carta = carta;
+		this.jogador = jogador;
 	}
 
 	public Carta getCarta() {
