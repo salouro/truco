@@ -3,15 +3,11 @@ package view.jogo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
-import java.util.Set;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import controller.ControlJogo;
 import controller.ControlPartida;
 import model.Carta;
-import model.Jogador;
 import model.Jogo;
 
 public class JogoPrincipal extends JFrame implements MouseListener {
@@ -36,8 +32,10 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String name = e.getComponent().getName();
-
+		Carta c = null;
 		Jogo jogo = cj.getJogo();
+		List<Carta> cartas = cj.getJogadorHumano().getMao();
+		JLabel card = null;
 		int pontuacaoA = jogo.getPontosA();
 		int pontuacaoB = jogo.getPontosB();
 		
@@ -46,27 +44,57 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		
 		painel.atualizaPlacar(pontuacaoA,pontuacaoB);
 		
-		
-		
-		
-		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) { // caso
-																		// seja
-																		// clicado
-																		// na
-																		// carta1
-			this.painel.moverCardParaMesa(this.painel.getCard1());
+
+		// caso seja clicado na carta1
+		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) { 
+			if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
+				card = painel.getCard1();
+			} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
+				card = painel.getCard2();
+			} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
+				card = painel.getCard3();
+			}
+			for (Carta carta : cartas) {
+				if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
+						&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
+					c = carta;
+				}
+			}
+			this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(), c.getValor().toString().toLowerCase());
 			cp.jogadaJogador();
-		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) { // clicado
-																				// carta
-																				// 2
-			this.painel.moverCardParaMesa(this.painel.getCard2());
+		// caso seja clicado na carta2	
+		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) { 
+			if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
+				card = painel.getCard1();
+			} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
+				card = painel.getCard2();
+			} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
+				card = painel.getCard3();
+			}
+			for (Carta carta : cartas) {
+				if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
+						&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
+					c = carta;
+				}
+			}
+			this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(), c.getValor().toString().toLowerCase());
 			cp.jogadaJogador();
-		} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) { // caso
-																				// seja
-																				// clicado
-																				// na
-																				// carta3
-			this.painel.moverCardParaMesa(this.painel.getCard3());
+		// caso seja clicado na carta3
+		} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) { 
+			if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
+				card = painel.getCard1();
+			} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
+				card = painel.getCard2();
+			} else if (name.equalsIgnoreCase(this.painel.getCard3().getName())) {
+				card = painel.getCard3();
+			}
+			for (Carta carta : cartas) {
+				if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
+						&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
+					c = carta;
+				}
+			}
+			this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(), c.getValor().toString().toLowerCase());
 			cp.jogadaJogador();
 		}
 
