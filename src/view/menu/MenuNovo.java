@@ -1,23 +1,18 @@
 package view.menu;
 
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import controller.ControlJogo;
-import controller.ControlPartida;
-import model.Pessoa;
-import view.jogo.JogoPrincipal;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.JDialog;
-
-import java.awt.event.ActionListener;
-import java.util.Random;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import view.jogo.JogoPrincipal;
 
 public class MenuNovo extends JDialog implements ActionListener {
 

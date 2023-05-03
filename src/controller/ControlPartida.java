@@ -13,12 +13,12 @@ public class ControlPartida {
 
 	private ControlTurno ct;
 	private Partida partida;
-	
-	public ControlPartida(ControlTurno ct) {		
+
+	public ControlPartida(ControlTurno ct) {
 		this.ct = ct;
 	}
-	
-	public void novaPartida(){
+
+	public void novaPartida() {
 		setPartida(new Partida());
 	}
 
@@ -26,27 +26,26 @@ public class ControlPartida {
 		ct.criaTurno();
 		partida.addTurno(ct.getTurno());
 	}
-	
-	public void distribuiCartas(Set<Jogador> j, Baralho b){
+
+	public void distribuiCartas(Set<Jogador> j, Baralho b) {
 		embaralhar(b);
-		
-		for (int i = 0; i < 3; i++){
-			for (Jogador jo : j){
+
+		for (int i = 0; i < 3; i++) {
+			for (Jogador jo : j) {
 				jo.addCarta(b.getCartas().remove(0));
 			}
-		partida.setManilha(b.getCartas().remove(0));
-		
+			partida.setManilha(b.getCartas().remove(0));
+
 		}
-		
-		for (Jogador jo : j){
-			System.out.println(jo.getNome());
-			
-			for (Carta c : jo.getMao()){
-				System.out.println(c.getValor() + " de " + c.getNaipe());
-			}
-		}
+
+		/*
+		 * for (Jogador jo : j){ System.out.println(jo.getNome());
+		 * 
+		 * for (Carta c : jo.getMao()){ System.out.println(c.getValor() + " de " +
+		 * c.getNaipe()); } }
+		 */
 	}
-	
+
 	public void embaralhar(Baralho b) {
 		List<Carta> cartas = b.getCartas();
 		Random gerador = new Random();
@@ -63,8 +62,34 @@ public class ControlPartida {
 		}
 	}
 
-	public void verificarVencedorTurno() {	
-		
+	public int verificarVencedorTurno(Carta cartaJogador, Carta cartaPc, Carta manilha) {
+		int valorManilha = 0;
+		if (manilha.getValor().getValor() + 1 > 10) {
+			valorManilha = 1;
+		} else {
+			valorManilha = manilha.getValor().getValor() + 1;
+		}
+		if (cartaJogador.getValor().getValor() > cartaPc.getValor().getValor()) {
+			if (cartaPc.getValor().getValor() == valorManilha) {
+				return -1;
+			}
+			return 1;
+		} else if (cartaJogador.getValor().getValor() < cartaPc.getValor().getValor()) {
+			if (cartaJogador.getValor().getValor() == valorManilha) {
+				return 1;
+			}
+			return -1;
+		} else {
+			if (cartaJogador.getValor().getValor() == valorManilha && cartaPc.getValor().getValor() == valorManilha) {
+				if(cartaJogador.getNaipe().getValor()>cartaPc.getNaipe().getValor()) {
+					return 1;
+				}else {
+					return -1;
+				}
+			}
+			ct.getTurno().setMelado(true);
+			return 0;
+		}
 	}
 
 	public void verificarVendorPartida() {
@@ -80,16 +105,15 @@ public class ControlPartida {
 		int tempo;
 		tempo = a.nextInt(6);
 		try {
-			Thread.sleep(1000 + (tempo*2000));
+			Thread.sleep(1000 + (tempo * 2000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	public void jogadaJogador() {
-		
+
 	}
 
 	public ControlTurno getCt() {

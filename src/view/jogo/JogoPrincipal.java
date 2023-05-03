@@ -59,19 +59,17 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String name = e.getComponent().getName();
-		Carta c = null;
+		Carta cartaJogadaJogador = null;
+		Carta cartaJogadaPc = null;
 		Jogo jogo = cj.getJogo();
 		List<Carta> cartas = cj.getJogadorHumano().getMao();
 		List<Carta> cartaPc = cj.getJogadorpC().getMao();
 		JLabel card = null;
-		int pontuacaoA = jogo.getPontosA();
-		int pontuacaoB = jogo.getPontosB();
-
-		jogo.setPontosA(++pontuacaoA);
-		jogo.setPontosB(++pontuacaoB);
-
-		painel.atualizaPlacar(pontuacaoA, pontuacaoB);
-
+		int pontuacaoJogador = jogo.getPontosJogador();
+		int pontuacaoPc = jogo.getPontosPc();
+		int vencedorTurno = 0;
+		int turnoMelado = 0;
+		
 		if (name.equalsIgnoreCase(this.painel.getCard1().getName())) {
 			card = painel.getCard1();
 		} else if (name.equalsIgnoreCase(this.painel.getCard2().getName())) {
@@ -82,20 +80,31 @@ public class JogoPrincipal extends JFrame implements MouseListener {
 		for (Carta carta : cartas) {
 			if (card.getName().contains(carta.getNaipe().toString().toLowerCase())
 					&& card.getName().contains(carta.getValor().toString().toLowerCase())) {
-				c = carta;
+				cartaJogadaJogador = carta;
 			}
 		}
 		
-		this.painel.moverCardParaMesa(card, c.getNaipe().toString().toLowerCase(),
-				c.getValor().toString().toLowerCase());
+		this.painel.moverCardParaMesa(card, cartaJogadaJogador.getNaipe().toString().toLowerCase(),
+				cartaJogadaJogador.getValor().toString().toLowerCase());
 
-		ct.jogaCarta(c, cj.getJogo().getJogadores());
+		ct.jogaCarta(cartaJogadaJogador, cj.getJogo().getJogadores());
 
-		
-		c = cartaPc.get(i);
+		cartaJogadaPc = cartaPc.get(i);
 		i++;
-		painel.viraCartaPc(c.getNaipe().toString(), c.getValor().toString());
+		painel.viraCartaPc(cartaJogadaPc.getNaipe().toString(), cartaJogadaPc.getValor().toString());
+		
+		if(ct.getTurno().isMelado()) {
+			turnoMelado=1;
+		}
+		vencedorTurno = cp.verificarVencedorTurno(cartaJogadaJogador, cartaJogadaPc,cp.getPartida().getManilha());
+		
+		if (vencedorTurno==1) {
+			jogo.setPontosJogador(++pontuacaoJogador+turnoMelado);
+		}else if(vencedorTurno==-1){
+			jogo.setPontosPc(++pontuacaoPc+turnoMelado);
+		}
 
+		painel.atualizaPlacar(pontuacaoJogador, pontuacaoPc);
 
 	}
 

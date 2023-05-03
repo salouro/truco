@@ -8,7 +8,8 @@ public class Turno {
 	private int numero;
 	private List<CartaJogada> cartasJogadas;
 	private Jogador vencedor;
-
+	private boolean isMelado;
+	
 	public Turno() {
 		this.cartasJogadas = new ArrayList<CartaJogada>();
 	}
@@ -39,6 +40,14 @@ public class Turno {
 
 	public void setVencedor(Jogador vencedor) {
 		this.vencedor = vencedor;
+	}
+
+	public boolean isMelado() {
+		return isMelado;
+	}
+
+	public void setMelado(boolean isMelado) {
+		this.isMelado = isMelado;
 	}
 
 }

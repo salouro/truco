@@ -52,19 +52,19 @@ public class Jogo {
 		this.data = data;
 	}
 
-	public int getPontosA() {
+	public int getPontosJogador() {
 		return pontosA;
 	}
 
-	public void setPontosA(int pontosA) {
+	public void setPontosJogador(int pontosA) {
 		this.pontosA = pontosA;
 	}
 
-	public int getPontosB() {
+	public int getPontosPc() {
 		return pontosB;
 	}
 
-	public void setPontosB(int pontosB) {
+	public void setPontosPc(int pontosB) {
 		this.pontosB = pontosB;
 	}
 
